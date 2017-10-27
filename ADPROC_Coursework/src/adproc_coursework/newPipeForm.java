@@ -53,6 +53,14 @@ public class newPipeForm extends javax.swing.JFrame {
                 LengthLabel.setText("Length");
 
                 DiameterTextField.setText("Enter Diameter");
+                DiameterTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                DiameterTextFieldMouseClicked(evt);
+                        }
+                        public void mouseExited(java.awt.event.MouseEvent evt) {
+                                DiameterTextFieldMouseExited(evt);
+                        }
+                });
                 DiameterTextField.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 DiameterTextFieldActionPerformed(evt);
@@ -65,6 +73,14 @@ public class newPipeForm extends javax.swing.JFrame {
                 });
 
                 LengthTextField.setText("Enter Length");
+                LengthTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                LengthTextFieldMouseClicked(evt);
+                        }
+                        public void mouseExited(java.awt.event.MouseEvent evt) {
+                                LengthTextFieldMouseExited(evt);
+                        }
+                });
                 LengthTextField.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 LengthTextFieldActionPerformed(evt);
@@ -112,6 +128,14 @@ public class newPipeForm extends javax.swing.JFrame {
                 ErrorReportingLabel.setText("This box will say when invalid input is done");
 
                 QuantityTextField.setText("Quantity Wanted");
+                QuantityTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                QuantityTextFieldMouseClicked(evt);
+                        }
+                        public void mouseExited(java.awt.event.MouseEvent evt) {
+                                QuantityTextFieldMouseExited(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -253,6 +277,43 @@ public class newPipeForm extends javax.swing.JFrame {
         private void ChemicalResistanceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChemicalResistanceCheckBoxActionPerformed
                 // TODO add your handling code here:
         }//GEN-LAST:event_ChemicalResistanceCheckBoxActionPerformed
+
+        private void DiameterTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseClicked
+		//When user clicks to edit the text in the text field
+		DiameterTextField.setText("");
+        }//GEN-LAST:event_DiameterTextFieldMouseClicked
+
+        private void LengthTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LengthTextFieldMouseClicked
+		//When user clicks to edit the text in the text field
+		LengthTextField.setText("");
+        }//GEN-LAST:event_LengthTextFieldMouseClicked
+
+        private void QuantityTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuantityTextFieldMouseClicked
+		//When user clicks to edit the text in the text field
+		QuantityTextField.setText("");
+        }//GEN-LAST:event_QuantityTextFieldMouseClicked
+
+        private void QuantityTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuantityTextFieldMouseExited
+                // TODO add your handling code here:
+		if  (QuantityTextField.getText().equals("")){
+			QuantityTextField.setText("Quantity Wanted");
+				
+		}
+        }//GEN-LAST:event_QuantityTextFieldMouseExited
+
+        private void LengthTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LengthTextFieldMouseExited
+		if  (LengthTextField.getText().equals("")){
+			LengthTextField.setText("Enter Length");
+				
+		}
+        }//GEN-LAST:event_LengthTextFieldMouseExited
+
+        private void DiameterTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseExited
+		if  (DiameterTextField.getText().equals("")){
+			DiameterTextField.setText("Enter Diameter");
+				
+		}
+        }//GEN-LAST:event_DiameterTextFieldMouseExited
 	
 
 		
