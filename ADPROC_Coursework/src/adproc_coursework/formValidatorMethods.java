@@ -14,20 +14,17 @@ import java.util.regex.Pattern;
  */
 public class formValidatorMethods {
 
-	//This method checks the input is made up of only digits
-	//This also checks that the number isn't negative.
-	//This should be used for the quantity and length text fields
 	public static boolean checkForPositiveInt(String input) {
 		//http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
-		//Start of line one or more digits end of line
+		//Checks for one or more digits then the end of the line
 		Pattern pattern = Pattern.compile("^\\d+$");
 		Matcher matcher = pattern.matcher(input);
-		return matcher.find();
+		return (matcher.find() && !input.equals("0"));
 	}
 
 	public static boolean checkForPositiveFloat(String input) {
-		//start of line , one or more digits, zero or more ".", one or more digits
-		Pattern pattern = Pattern.compile("^\\d+\\.?\\d+$"); //Th
+		//Checks for the start of a line any number of digits then one or zero "." then any number of digits then the end of the line
+		Pattern pattern = Pattern.compile("^\\d+\\.?\\d+$"); 
 		Matcher matcher = pattern.matcher(input);
 		return matcher.find();
 	}

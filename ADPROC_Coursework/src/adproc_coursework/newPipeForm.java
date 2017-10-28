@@ -5,11 +5,9 @@
  */
 package adproc_coursework;
 
-
 /**
- * Diameter and length are text fields
- * Grade , colours and quantity are combo boxes
- * Insulation , reinforcement and chemical resistance are radio buttons
+ * Diameter and length are text fields Grade , colours and quantity are combo
+ * boxes Insulation , reinforcement and chemical resistance are radio buttons
  * The submit button is a Button
  */
 public class newPipeForm extends javax.swing.JFrame {
@@ -226,45 +224,45 @@ public class newPipeForm extends javax.swing.JFrame {
 	//making a label visible and invisisble
 	//Getting selected item and its index in a combo box
         private void DiameterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiameterTextFieldActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		//This code is run when the user presses enter in the text box
 		System.out.println("Enter pressed in Diameter text field");
         }//GEN-LAST:event_DiameterTextFieldActionPerformed
 
         private void LengthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LengthTextFieldActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		System.out.println("Enter pressed inside length text field");
         }//GEN-LAST:event_LengthTextFieldActionPerformed
 
         private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		System.out.println("Submit button pressed");
-		System.out.println("Contents of grade drop down box is: "+GradeComboBox.getSelectedItem());
-		System.out.println("In position: "+GradeComboBox.getSelectedIndex()); //This is 0 indexed
-		if (ChemicalResistanceCheckBox.isSelected()){
+		System.out.println("Contents of grade drop down box is: " + GradeComboBox.getSelectedItem());
+		System.out.println("In position: " + GradeComboBox.getSelectedIndex()); //This is 0 indexed
+		if (ChemicalResistanceCheckBox.isSelected()) {
 			System.out.println("ChemicalResistanceCheckBox is ticked");
-		}else{
+		} else {
 			System.out.println("ChemicalResistanceCheckBox Isn't ticked");
 		}
 		System.out.println("Contents of DiameterTextField now set to potato");
 		DiameterTextField.setText("potato");
-		if (ErrorReportingLabel.isShowing()){
+		if (ErrorReportingLabel.isShowing()) {
 
-		ErrorReportingLabel.setVisible(false);
-		}else{
-		 	ErrorReportingLabel.setText("potato");
-		ErrorReportingLabel.setVisible(true);
+			ErrorReportingLabel.setVisible(false);
+		} else {
+			ErrorReportingLabel.setText("potato");
+			ErrorReportingLabel.setVisible(true);
 
 		}
-		
+
         }//GEN-LAST:event_SubmitButtonActionPerformed
 
         private void GradeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradeComboBoxActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
         }//GEN-LAST:event_GradeComboBoxActionPerformed
 
         private void ChemicalResistanceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChemicalResistanceCheckBoxActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
         }//GEN-LAST:event_ChemicalResistanceCheckBoxActionPerformed
 
         private void DiameterTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseClicked
@@ -283,49 +281,51 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_QuantityTextFieldMouseClicked
 
         private void QuantityTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuantityTextFieldMouseExited
-                // TODO add your handling code here:
-		if  (QuantityTextField.getText().equals("")){
+		// TODO add your handling code here:
+		if (QuantityTextField.getText().equals("")) {
 			QuantityTextField.setText("Quantity Wanted");
-				
+
 		}
         }//GEN-LAST:event_QuantityTextFieldMouseExited
 
         private void LengthTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LengthTextFieldMouseExited
-		if  (LengthTextField.getText().equals("")){
+		if (LengthTextField.getText().equals("")) {
 			LengthTextField.setText("Enter Length");
-				
 		}
         }//GEN-LAST:event_LengthTextFieldMouseExited
 
         private void DiameterTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseExited
-		if  (DiameterTextField.getText().equals("")){
+		if (DiameterTextField.getText().equals("")) {
 			DiameterTextField.setText("Enter Diameter");
-				
+
 		}
         }//GEN-LAST:event_DiameterTextFieldMouseExited
 
         private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
-		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(LengthTextField.getText());					
-		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(LengthTextField.getText());					
-		if(IsValidInt ||IsValidFloat ){
+		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(LengthTextField.getText());
+		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(LengthTextField.getText());
+		Boolean LengthMoreThan6m = 6 < Float.parseFloat(LengthTextField.getText());
+		if (IsValidInt || IsValidFloat) {
 			ErrorReportingLabel.setText("");
-		}else{
+			if (LengthMoreThan6m) {
+				ErrorReportingLabel.setText("Length cannot be greater than 6m.");
+			}
+		} else {
+
 			ErrorReportingLabel.setText("Invalid input in length.");
 		}
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
         private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
-		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(DiameterTextField.getText());					
-		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());					
-		if(IsValidInt ||IsValidFloat ){
+		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(DiameterTextField.getText());
+		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());
+		if (IsValidInt || IsValidFloat) {
 			ErrorReportingLabel.setText("");
-		}else{
+		} else {
 			ErrorReportingLabel.setText("Invalid input in diameter.");
 		}
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
-	
 
-		
 	/**
 	 * @param args the command line arguments
 	 */
