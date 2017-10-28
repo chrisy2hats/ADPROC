@@ -67,8 +67,8 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                 });
                 DiameterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyTyped(java.awt.event.KeyEvent evt) {
-                                DiameterTextFieldKeyTyped(evt);
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                                DiameterTextFieldKeyReleased(evt);
                         }
                 });
 
@@ -87,8 +87,8 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                 });
                 LengthTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyTyped(java.awt.event.KeyEvent evt) {
-                                LengthTextFieldKeyTyped(evt);
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                                LengthTextFieldKeyReleased(evt);
                         }
                 });
 
@@ -164,9 +164,9 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(LengthLabel)
                                                         .addComponent(ColoursLabel)
-                                                        .addComponent(LengthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(ColoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(96, 96, 96))
+                                                        .addComponent(ColoursComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(LengthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(54, 54, 54))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(QuantityLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,17 +259,6 @@ public class newPipeForm extends javax.swing.JFrame {
 		
         }//GEN-LAST:event_SubmitButtonActionPerformed
 
-        private void DiameterTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyTyped
-                // TODO add your handling code here:
-		System.out.println("This is called whenever a letter is typed into diameter text field");
-		System.out.println("This is the contents of field: "+DiameterTextField.getText());
-        }//GEN-LAST:event_DiameterTextFieldKeyTyped
-
-        private void LengthTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyTyped
-                // TODO add your handling code here:
-		System.out.println("This is called whenever a letter is typed into length text field");
-        }//GEN-LAST:event_LengthTextFieldKeyTyped
-
         private void GradeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradeComboBoxActionPerformed
                 // TODO add your handling code here:
         }//GEN-LAST:event_GradeComboBoxActionPerformed
@@ -314,6 +303,26 @@ public class newPipeForm extends javax.swing.JFrame {
 				
 		}
         }//GEN-LAST:event_DiameterTextFieldMouseExited
+
+        private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
+		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(LengthTextField.getText());					
+		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(LengthTextField.getText());					
+		if(IsValidInt ||IsValidFloat ){
+			ErrorReportingLabel.setText("");
+		}else{
+			ErrorReportingLabel.setText("Invalid input in length.");
+		}
+        }//GEN-LAST:event_LengthTextFieldKeyReleased
+
+        private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
+		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(DiameterTextField.getText());					
+		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());					
+		if(IsValidInt ||IsValidFloat ){
+			ErrorReportingLabel.setText("");
+		}else{
+			ErrorReportingLabel.setText("Invalid input in diameter.");
+		}
+        }//GEN-LAST:event_DiameterTextFieldKeyReleased
 	
 
 		
