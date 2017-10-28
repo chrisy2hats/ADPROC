@@ -26,6 +26,6 @@ public class formValidatorMethods {
 		//Checks for the start of a line any number of digits then one or zero "." then any number of digits then the end of the line
 		Pattern pattern = Pattern.compile("^\\d+\\.?\\d+$"); 
 		Matcher matcher = pattern.matcher(input);
-		return matcher.find();
+		return (matcher.find() && !input.equals("0.0"));
 	}
 }
