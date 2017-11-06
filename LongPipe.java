@@ -25,7 +25,17 @@ public class LongPipe {
         chemicalResist = newChemicalResist;
     }
     public double canculateVolume(int newLength,int newDiameter){
-        return 7.0;
+        //The volume of a cylinder = V=πr^2h
+        double totalVolume;
+        double innerVolume;
+        double volume;
+        double radius = newDiameter /2;
+        double innerRadius = radius * 0.9;
+        totalVolume = Math.PI*Math.pow(radius,2)*newLength;
+        innerVolume = Math.PI*Math.pow(innerRadius,2)*newLength;
+        volume = totalVolume - innerVolume;
+        return volume;
+        
     }
     public double convertMeterToInch(int newLength){
         return newLength / 0.0254;
