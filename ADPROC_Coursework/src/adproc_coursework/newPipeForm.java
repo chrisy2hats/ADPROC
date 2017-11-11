@@ -302,8 +302,8 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_DiameterTextFieldMouseExited
 
         private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
-		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(LengthTextField.getText());
-		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(LengthTextField.getText());
+		Boolean IsValidInt = TextBoxValidatorMethods.checkForPositiveInt(LengthTextField.getText());
+		Boolean IsValidFloat = TextBoxValidatorMethods.checkForPositiveFloat(LengthTextField.getText());
 		Boolean LengthMoreThan6m = 6 < Float.parseFloat(LengthTextField.getText());
 		if (IsValidInt || IsValidFloat) {
 			ErrorReportingLabel.setText("");
@@ -317,8 +317,8 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
         private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
-		Boolean IsValidInt = formValidatorMethods.checkForPositiveInt(DiameterTextField.getText());
-		Boolean IsValidFloat = formValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());
+		Boolean IsValidInt = TextBoxValidatorMethods.checkForPositiveInt(DiameterTextField.getText());
+		Boolean IsValidFloat = TextBoxValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());
 		if (IsValidInt || IsValidFloat) {
 			ErrorReportingLabel.setText("");
 		} else {

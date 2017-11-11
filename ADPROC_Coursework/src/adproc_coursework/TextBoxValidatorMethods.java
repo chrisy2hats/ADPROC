@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  *
  */
-public class formValidatorMethods {
+public class TextBoxValidatorMethods {
 
 	public static boolean checkForPositiveInt(String input) {
 		//http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
