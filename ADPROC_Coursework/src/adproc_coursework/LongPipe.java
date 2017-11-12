@@ -40,4 +40,9 @@ public class LongPipe {
     public double convertMeterToInch(int newLength){
         return newLength / 0.0254;
     }
+    public double cost(double volume,double price,double extraPercentage){
+        double cost = (volume*price)*extraPercentage;
+        return cost;
+    }
+    
 }
