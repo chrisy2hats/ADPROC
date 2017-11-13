@@ -9,7 +9,7 @@ package adproc_coursework;
  *
  * @author up808621
  */
-public class LongPipe {
+public abstract class LongPipe {
 
     private int lengthInMeters , diameterInInches , numOfColour , numOfPipes;
     private boolean chemicalResist,insulation,reinforcement;
@@ -42,10 +42,9 @@ public class LongPipe {
     public double convertMeterToInch(int newLength){
         return newLength / 0.0254;
     }
-    public double cost(double volume,double price,double extraPercentage){
-        double cost = (volume*price)*extraPercentage;
-        return cost;
-    }
+    public abstract double cost(double volume,double price,double extra);
+        
+    
     
     public double canculateExtra(){
         double extra = 1;

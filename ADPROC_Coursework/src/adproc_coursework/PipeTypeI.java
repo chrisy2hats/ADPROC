@@ -14,5 +14,8 @@ public class PipeTypeI extends LongPipe {
     public PipeTypeI(int newLength, int newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
         super(newLength, newDiameter, newNumColour, newNumOfPipes, newChemicalResist, newInsulation, newReinforcement);
     }
-    
+    public double cost(double volume,double price,double extra){
+       return (volume*1)*extra;
+}
+
 }
