@@ -1,1 +1,12 @@
 Repo for ADPROC Coursework
+
+
+TODO List:
+Required:
+Make UI scale better
+
+
+
+
+Extension(May get us extra marks)
+Make FormValidatorMethods use regex not try catch
