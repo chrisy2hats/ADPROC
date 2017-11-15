@@ -14,18 +14,28 @@ import java.util.regex.Pattern;
  */
 public class TextBoxValidatorMethods {
 
-	public static boolean checkForPositiveInt(String input) {
-		//http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
-		//Checks for one or more digits then the end of the line
-		Pattern pattern = Pattern.compile("^\\d+$");
-		Matcher matcher = pattern.matcher(input);
-		return (matcher.find() && !input.equals("0"));
+	public static boolean isValidInt(String input) {
+		try {
+			Integer.parseInt(input);
+
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		return true;
 	}
 
-	public static boolean checkForPositiveFloat(String input) {
-		//Checks for the start of a line any number of digits then one or zero "." then any number of digits then the end of the line
-		Pattern pattern = Pattern.compile("^\\d+\\.?\\d+$"); 
-		Matcher matcher = pattern.matcher(input);
-		return (matcher.find() && !input.equals("0.0"));
+	public static boolean isValidFloat(String input) {
+		try {
+			Float.parseFloat(input);
+
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		if (!input.substring(input.length() - 1).equals(".")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 }

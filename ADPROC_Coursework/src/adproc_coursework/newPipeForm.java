@@ -302,29 +302,28 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_DiameterTextFieldMouseExited
 
         private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
-		Boolean IsValidInt = TextBoxValidatorMethods.checkForPositiveInt(LengthTextField.getText());
-		Boolean IsValidFloat = TextBoxValidatorMethods.checkForPositiveFloat(LengthTextField.getText());
-		Boolean LengthMoreThan6m = 6 < Float.parseFloat(LengthTextField.getText());
-		if (IsValidInt || IsValidFloat) {
+		//Checks if it is a valid int or float and is less than 6m long
+		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(LengthTextField.getText());
+		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(LengthTextField.getText());
+		if (!(ValidInt || ValidFloat)) { //TODO need to also check for if the val ends in "."
+			ErrorReportingLabel.setText("Invalid input in length");
+		} else if (Float.parseFloat(LengthTextField.getText()) <= 6) {
 			ErrorReportingLabel.setText("");
-			if (LengthMoreThan6m) {
-				ErrorReportingLabel.setText("Length cannot be greater than 6m.");
-			}
 		} else {
-
-			ErrorReportingLabel.setText("Invalid input in length.");
+			ErrorReportingLabel.setText("Length cannot be more than 6");
 		}
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
         private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
-		Boolean IsValidInt = TextBoxValidatorMethods.checkForPositiveInt(DiameterTextField.getText());
-		Boolean IsValidFloat = TextBoxValidatorMethods.checkForPositiveFloat(DiameterTextField.getText());
-		if (IsValidInt || IsValidFloat) {
-			ErrorReportingLabel.setText("");
-		} else {
-			ErrorReportingLabel.setText("Invalid input in diameter.");
-		}
+		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(DiameterTextField.getText());
+		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(DiameterTextField.getText());
+		if (!(ValidInt || ValidFloat)) {
+			ErrorReportingLabel.setText("Invalid input in diameter");
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
+		else {
+			ErrorReportingLabel.setText("");
+		}
+	}
 
 	/**
 	 * @param args the command line arguments
@@ -340,16 +339,24 @@ public class newPipeForm extends javax.swing.JFrame {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
+
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(newPipeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(newPipeForm.class
+				.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(newPipeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(newPipeForm.class
+				.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(newPipeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(newPipeForm.class
+				.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(newPipeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(newPipeForm.class
+				.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 
