@@ -67,9 +67,21 @@ public abstract class LongPipe {
     
 }
     public void choose(int grade,int colour,boolean insulation,boolean reinforcement){
-        if (grade >=3 && colour == 0 && insulation == false  && reinforcement == false){
+        if (grade <=3 && grade > 0 && colour == 0 && insulation == false  && reinforcement == false){
             //create a object of pipe I
         }
+        if (grade <=4 && grade > 1 && colour == 1 && insulation == false  && reinforcement == false){
+            //create a object of pipe II
+        }
+        if (grade <=5 && grade > 1 && colour == 2 && insulation == false  && reinforcement == false){
+            //create a object of pipe III
+        }
+        if (grade <=5 && grade > 1 && colour == 2  && insulation == true  && reinforcement == false){
+            //create o object of pipe IV
+        }
+         if (grade <=5 && grade > 2 && colour == 2  && insulation == true  && reinforcement == true){
+             //create a object of pipe V
+         }
     }
    
 }
