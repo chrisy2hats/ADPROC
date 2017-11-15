@@ -59,11 +59,6 @@ public class newPipeForm extends javax.swing.JFrame {
                                 DiameterTextFieldMouseExited(evt);
                         }
                 });
-                DiameterTextField.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                DiameterTextFieldActionPerformed(evt);
-                        }
-                });
                 DiameterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
                         public void keyReleased(java.awt.event.KeyEvent evt) {
                                 DiameterTextFieldKeyReleased(evt);
@@ -77,11 +72,6 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                         public void mouseExited(java.awt.event.MouseEvent evt) {
                                 LengthTextFieldMouseExited(evt);
-                        }
-                });
-                LengthTextField.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                LengthTextFieldActionPerformed(evt);
                         }
                 });
                 LengthTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,6 +122,11 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                         public void mouseExited(java.awt.event.MouseEvent evt) {
                                 QuantityTextFieldMouseExited(evt);
+                        }
+                });
+                QuantityTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyReleased(java.awt.event.KeyEvent evt) {
+                                QuantityTextFieldKeyReleased(evt);
                         }
                 });
 
@@ -215,24 +210,6 @@ public class newPipeForm extends javax.swing.JFrame {
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
-	//To remove a event binding go to design -> right click on element -> properties -> events and delete it there
-	//Below is the code for:
-	//Getting and setting TextField contents as they type
-	//Running code when submit button is pressed
-	//Checking if a check box is ticked
-	//Setting a labels contents
-	//making a label visible and invisisble
-	//Getting selected item and its index in a combo box
-        private void DiameterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiameterTextFieldActionPerformed
-		// TODO add your handling code here:
-		//This code is run when the user presses enter in the text box
-		System.out.println("Enter pressed in Diameter text field");
-        }//GEN-LAST:event_DiameterTextFieldActionPerformed
-
-        private void LengthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LengthTextFieldActionPerformed
-		// TODO add your handling code here:
-		System.out.println("Enter pressed inside length text field");
-        }//GEN-LAST:event_LengthTextFieldActionPerformed
 
         private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
 		// TODO add your handling code here:
@@ -325,6 +302,15 @@ public class newPipeForm extends javax.swing.JFrame {
 		}
 	}
 
+        private void QuantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantityTextFieldKeyReleased
+		//Only allow integers.You can't order 5.5 pipes
+		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(QuantityTextField.getText());
+		if (!ValidInt) {
+			ErrorReportingLabel.setText("Invalid input in quantity");
+		} else {
+			ErrorReportingLabel.setText("");
+		}
+        }//GEN-LAST:event_QuantityTextFieldKeyReleased
 	/**
 	 * @param args the command line arguments
 	 */
