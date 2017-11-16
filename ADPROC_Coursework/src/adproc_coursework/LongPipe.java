@@ -83,6 +83,25 @@ public abstract class LongPipe {
              //create a object of pipe V
          }
     }
-   
+   public double priceGrade(double grade){
+        if (grade == 1){
+            return 0.4;
+        }
+        else if (grade == 2){
+            return 0.6;
+        }
+        else if (grade == 3){
+            return 0.75;
+        }
+        else if (grade == 4){
+            return 0.8;
+        }
+        else if (grade == 5){
+            return 0.95;
+        }
+        else{
+            return 0;
+        }
+    }
 }
 
