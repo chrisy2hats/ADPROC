@@ -55,9 +55,6 @@ public class newPipeForm extends javax.swing.JFrame {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 DiameterTextFieldMouseClicked(evt);
                         }
-                        public void mouseExited(java.awt.event.MouseEvent evt) {
-                                DiameterTextFieldMouseExited(evt);
-                        }
                 });
                 DiameterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
                         public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -69,9 +66,6 @@ public class newPipeForm extends javax.swing.JFrame {
                 LengthTextField.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 LengthTextFieldMouseClicked(evt);
-                        }
-                        public void mouseExited(java.awt.event.MouseEvent evt) {
-                                LengthTextFieldMouseExited(evt);
                         }
                 });
                 LengthTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -119,9 +113,6 @@ public class newPipeForm extends javax.swing.JFrame {
                 QuantityTextField.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 QuantityTextFieldMouseClicked(evt);
-                        }
-                        public void mouseExited(java.awt.event.MouseEvent evt) {
-                                QuantityTextFieldMouseExited(evt);
                         }
                 });
                 QuantityTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -212,17 +203,52 @@ public class newPipeForm extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
         private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-		// TODO add your handling code here:
-		System.out.println("Submit button pressed");
-		System.out.println("Contents of grade drop down box is: " + GradeComboBox.getSelectedItem());
-		System.out.println("In position: " + GradeComboBox.getSelectedIndex()); //This is 0 indexed
-		if (ChemicalResistanceCheckBox.isSelected()) {
-			System.out.println("ChemicalResistanceCheckBox is ticked");
-		} else {
-			System.out.println("ChemicalResistanceCheckBox Isn't ticked");
+		boolean validInput = true;
+		if (!ErrorReportingLabel.getText().equals(""))	{
+		//If there is invalid input in Diameter, Length or Quantity text boxes submit button will do nothing provided the error is flagged
+			validInput = false;
 		}
-		System.out.println("Contents of DiameterTextField now set to potato");
-		DiameterTextField.setText("potato");
+		//Detecting a valid pipe
+//public void choose(int grade,int colour,boolean insulation,boolean reinforcement){
+//	String grade = (System.out.println(GradeComboBox.getSelectedItem()));
+//	System.out.println(GradeComboBox.getSelectedItem());
+//	int grade = (int) GradeComboBox.getSelectedItem();// "(int)" converts from an object to a int
+	int grade = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
+	
+//	System.out.println(grade);
+	if (grade == 1){
+		System.out.println("tis 1");
+	}
+//	int grade = (GradeComboBox.getSelectedItem());
+//        if (grade <=3 && grade > 0 && colour == 0 && insulation == false  && reinforcement == false){
+            //create a object of pipe I
+//        }
+//        if (grade <=4 && grade > 1 && colour == 1 && insulation == false  && reinforcement == false){
+            //create a object of pipe II
+//        }
+//        if (grade <=5 && grade > 1 && colour == 2 && insulation == false  && reinforcement == false){
+            //create a object of pipe III
+//        }
+//        if (grade <=5 && grade > 1 && colour == 2  && insulation == true  && reinforcement == false){
+//            create o object of pipe IV
+//        }
+//         if (grade <=5 && grade > 2 && colour == 2  && insulation == true  && reinforcement == true){
+             //create a object of pipe V
+//	    }
+
+
+
+		//
+//		System.out.println("Submit button pressed");
+//		System.out.println("Contents of grade drop down box is: " + GradeComboBox.getSelectedItem());
+//		System.out.println("In position: " + GradeComboBox.getSelectedIndex()); //This is 0 indexed
+		if (ChemicalResistanceCheckBox.isSelected()) {
+//			System.out.println("ChemicalResistanceCheckBox is ticked");
+		} else {
+//			System.out.println("ChemicalResistanceCheckBox Isn't ticked");
+		}
+//		System.out.println("Contents of DiameterTextField now set to potato");
+//		DiameterTextField.setText("potato");
 		if (ErrorReportingLabel.isShowing()) {
 
 			ErrorReportingLabel.setVisible(false);
@@ -242,6 +268,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		// TODO add your handling code here:
         }//GEN-LAST:event_ChemicalResistanceCheckBoxActionPerformed
 
+	//3 methods below remove initial text from text boxes when they are clicked on
         private void DiameterTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseClicked
 		//When user clicks to edit the text in the text field
 		DiameterTextField.setText("");
@@ -256,27 +283,6 @@ public class newPipeForm extends javax.swing.JFrame {
 		//When user clicks to edit the text in the text field
 		QuantityTextField.setText("");
         }//GEN-LAST:event_QuantityTextFieldMouseClicked
-
-        private void QuantityTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QuantityTextFieldMouseExited
-		// TODO add your handling code here:
-		if (QuantityTextField.getText().equals("")) {
-			QuantityTextField.setText("Quantity Wanted");
-
-		}
-        }//GEN-LAST:event_QuantityTextFieldMouseExited
-
-        private void LengthTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LengthTextFieldMouseExited
-		if (LengthTextField.getText().equals("")) {
-			LengthTextField.setText("Enter Length");
-		}
-        }//GEN-LAST:event_LengthTextFieldMouseExited
-
-        private void DiameterTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseExited
-		if (DiameterTextField.getText().equals("")) {
-			DiameterTextField.setText("Enter Diameter");
-
-		}
-        }//GEN-LAST:event_DiameterTextFieldMouseExited
 
         private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
 		//Checks if it is a valid int or float and is less than 6m long
