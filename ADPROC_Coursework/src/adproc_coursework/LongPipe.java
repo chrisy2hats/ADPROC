@@ -26,7 +26,7 @@ public abstract class LongPipe {
         insulation = newInsulation;
         reinforcement = newReinforcement;
     }
-    public double canculateVolume(int newLength,int newDiameter){
+    public double calculateVolume(int newLength,int newDiameter){
         //The volume of a cylinder = V=πr^2h
         double totalVolume;
         double innerVolume;
@@ -46,7 +46,7 @@ public abstract class LongPipe {
         
     
     
-    public double canculateExtra(){
+    public double calculateExtra(){
         double extra = 1;
         if (numOfColour == 1){
             extra+=0.12;
