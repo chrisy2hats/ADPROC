@@ -17,6 +17,10 @@ public class newPipeForm extends javax.swing.JFrame {
 	 */
 	public newPipeForm() {
 		initComponents();
+		//Makes the error labels invisible to the user at the start without having to deal with .setVisible
+		DiameterErrorReportingLabel.setText(" ");
+		QuantityErrorReportingLabel.setText("");
+		LengthErrorReportingLabel.setText(" ");
 	}
 
 	/**
@@ -41,8 +45,11 @@ public class newPipeForm extends javax.swing.JFrame {
                 InsulationCheckBox = new javax.swing.JCheckBox();
                 ReinforcementCheckBox = new javax.swing.JCheckBox();
                 ChemicalResistanceCheckBox = new javax.swing.JCheckBox();
-                ErrorReportingLabel = new javax.swing.JLabel();
+                LengthErrorReportingLabel = new javax.swing.JLabel();
                 QuantityTextField = new javax.swing.JTextField();
+                QuantityErrorReportingLabel = new javax.swing.JLabel();
+                DiameterErrorReportingLabel = new javax.swing.JLabel();
+                SubmitFailiureLabel = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,11 +86,6 @@ public class newPipeForm extends javax.swing.JFrame {
                 ColoursLabel.setText("Colours");
 
                 GradeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "3", "4", "5" }));
-                GradeComboBox.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                GradeComboBoxActionPerformed(evt);
-                        }
-                });
 
                 ColoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Colours", "One Colour", "Two Colours" }));
 
@@ -101,13 +103,8 @@ public class newPipeForm extends javax.swing.JFrame {
                 ReinforcementCheckBox.setText("Reinforcement");
 
                 ChemicalResistanceCheckBox.setText("Chemical Resistance");
-                ChemicalResistanceCheckBox.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                ChemicalResistanceCheckBoxActionPerformed(evt);
-                        }
-                });
 
-                ErrorReportingLabel.setText("This box will say when invalid input is done");
+                LengthErrorReportingLabel.setText("LengthErrorReportingLabel");
 
                 QuantityTextField.setText("Quantity Wanted");
                 QuantityTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,30 +118,24 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                 });
 
+                QuantityErrorReportingLabel.setText("QuantityErrorReportingLabel");
+
+                DiameterErrorReportingLabel.setText("DiameterErrorReportingLabel");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SubmitButton)
-                                .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(GradeLabel)
                                                         .addComponent(DiameterLabel)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(GradeLabel)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(ErrorReportingLabel))
                                                         .addComponent(DiameterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(GradeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(LengthLabel)
                                                         .addComponent(ColoursLabel)
@@ -152,13 +143,33 @@ public class newPipeForm extends javax.swing.JFrame {
                                                         .addComponent(LengthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(54, 54, 54))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(QuantityLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(InsulationCheckBox)
-                                                        .addComponent(ReinforcementCheckBox)
-                                                        .addComponent(ChemicalResistanceCheckBox))
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(DiameterErrorReportingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(LengthErrorReportingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(QuantityLabel)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(InsulationCheckBox)
+                                                                                        .addComponent(ReinforcementCheckBox)
+                                                                                        .addComponent(ChemicalResistanceCheckBox))
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addComponent(QuantityErrorReportingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                                                                .addGap(380, 380, 380))
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                                .addComponent(SubmitFailiureLabel)
+                                                                                .addGap(141, 141, 141)))
+                                                                .addComponent(SubmitButton))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addContainerGap())))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,13 +184,15 @@ public class newPipeForm extends javax.swing.JFrame {
                                         .addComponent(LengthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(GradeLabel)
-                                                        .addComponent(ColoursLabel)))
+                                                .addGap(3, 3, 3)
+                                                .addComponent(DiameterErrorReportingLabel))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(ErrorReportingLabel)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(LengthErrorReportingLabel)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(GradeLabel)
+                                        .addComponent(ColoursLabel))
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(GradeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,10 +205,17 @@ public class newPipeForm extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(QuantityLabel)
                                         .addComponent(ChemicalResistanceCheckBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(SubmitButton)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(17, 17, 17)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(SubmitButton)
+                                                        .addComponent(QuantityErrorReportingLabel)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(27, 27, 27)
+                                                .addComponent(SubmitFailiureLabel)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
@@ -203,70 +223,24 @@ public class newPipeForm extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
         private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-		boolean validInput = true;
-		if (!ErrorReportingLabel.getText().equals(""))	{
-		//If there is invalid input in Diameter, Length or Quantity text boxes submit button will do nothing provided the error is flagged
-			validInput = false;
-		}
-		//Detecting a valid pipe
-//public void choose(int grade,int colour,boolean insulation,boolean reinforcement){
-//	String grade = (System.out.println(GradeComboBox.getSelectedItem()));
-//	System.out.println(GradeComboBox.getSelectedItem());
-//	int grade = (int) GradeComboBox.getSelectedItem();// "(int)" converts from an object to a int
-	int grade = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
-	
-//	System.out.println(grade);
-	if (grade == 1){
-		System.out.println("tis 1");
-	}
-//	int grade = (GradeComboBox.getSelectedItem());
-//        if (grade <=3 && grade > 0 && colour == 0 && insulation == false  && reinforcement == false){
-            //create a object of pipe I
-//        }
-//        if (grade <=4 && grade > 1 && colour == 1 && insulation == false  && reinforcement == false){
-            //create a object of pipe II
-//        }
-//        if (grade <=5 && grade > 1 && colour == 2 && insulation == false  && reinforcement == false){
-            //create a object of pipe III
-//        }
-//        if (grade <=5 && grade > 1 && colour == 2  && insulation == true  && reinforcement == false){
-//            create o object of pipe IV
-//        }
-//         if (grade <=5 && grade > 2 && colour == 2  && insulation == true  && reinforcement == true){
-             //create a object of pipe V
-//	    }
 
+		//If there are no reported errors with the users input
+		if ((!LengthErrorReportingLabel.getText().equals("")) || (!DiameterErrorReportingLabel.getText().equals("")) || (!QuantityErrorReportingLabel.getText().equals(""))) {
+			SubmitFailiureLabel.setText("New pipe not created.Please fix errors with input first");
 
-
-		//
-//		System.out.println("Submit button pressed");
-//		System.out.println("Contents of grade drop down box is: " + GradeComboBox.getSelectedItem());
-//		System.out.println("In position: " + GradeComboBox.getSelectedIndex()); //This is 0 indexed
-		if (ChemicalResistanceCheckBox.isSelected()) {
-//			System.out.println("ChemicalResistanceCheckBox is ticked");
+		//If they have entered input in all of the text fields
+		} else if ((LengthTextField.getText().equals("")) || (DiameterTextField.getText().equals("")) || (QuantityTextField.getText().equals(""))) {
+			SubmitFailiureLabel.setText("New pipe not created.Requireed input is missing");
 		} else {
-//			System.out.println("ChemicalResistanceCheckBox Isn't ticked");
+			SubmitFailiureLabel.setText("New pipe successfully created!");
+
+			//Code to get value of a combo box
+			//int grade = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
+
+			//TODO Code to check if code entered is a valid kind of pipe.(One offered by the company)
+			//TODO Code to actually create a pipe in here
 		}
-//		System.out.println("Contents of DiameterTextField now set to potato");
-//		DiameterTextField.setText("potato");
-		if (ErrorReportingLabel.isShowing()) {
-
-			ErrorReportingLabel.setVisible(false);
-		} else {
-			ErrorReportingLabel.setText("potato");
-			ErrorReportingLabel.setVisible(true);
-
-		}
-
         }//GEN-LAST:event_SubmitButtonActionPerformed
-
-        private void GradeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GradeComboBoxActionPerformed
-		// TODO add your handling code here:
-        }//GEN-LAST:event_GradeComboBoxActionPerformed
-
-        private void ChemicalResistanceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChemicalResistanceCheckBoxActionPerformed
-		// TODO add your handling code here:
-        }//GEN-LAST:event_ChemicalResistanceCheckBoxActionPerformed
 
 	//3 methods below remove initial text from text boxes when they are clicked on
         private void DiameterTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseClicked
@@ -288,12 +262,12 @@ public class newPipeForm extends javax.swing.JFrame {
 		//Checks if it is a valid int or float and is less than 6m long
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(LengthTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(LengthTextField.getText());
-		if (!(ValidInt || ValidFloat)) { //TODO need to also check for if the val ends in "."
-			ErrorReportingLabel.setText("Invalid input in length");
+		if (!(ValidInt || ValidFloat)) { 
+			LengthErrorReportingLabel.setText("Invalid input in length");
 		} else if (Float.parseFloat(LengthTextField.getText()) <= 6) {
-			ErrorReportingLabel.setText("");
+			LengthErrorReportingLabel.setText("");
 		} else {
-			ErrorReportingLabel.setText("Length cannot be more than 6");
+			LengthErrorReportingLabel.setText("Length cannot be more than 6");
 		}
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
@@ -301,10 +275,10 @@ public class newPipeForm extends javax.swing.JFrame {
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(DiameterTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(DiameterTextField.getText());
 		if (!(ValidInt || ValidFloat)) {
-			ErrorReportingLabel.setText("Invalid input in diameter");
+			DiameterErrorReportingLabel.setText("Invalid input in diameter");
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
 		else {
-			ErrorReportingLabel.setText("");
+			DiameterErrorReportingLabel.setText("");
 		}
 	}
 
@@ -312,9 +286,9 @@ public class newPipeForm extends javax.swing.JFrame {
 		//Only allow integers.You can't order 5.5 pipes
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(QuantityTextField.getText());
 		if (!ValidInt) {
-			ErrorReportingLabel.setText("Invalid input in quantity");
+			QuantityErrorReportingLabel.setText("Invalid input in quantity");
 		} else {
-			ErrorReportingLabel.setText("");
+			QuantityErrorReportingLabel.setText("");
 		}
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 	/**
@@ -364,17 +338,20 @@ public class newPipeForm extends javax.swing.JFrame {
         private javax.swing.JCheckBox ChemicalResistanceCheckBox;
         private javax.swing.JComboBox<String> ColoursComboBox;
         private javax.swing.JLabel ColoursLabel;
+        private javax.swing.JLabel DiameterErrorReportingLabel;
         private javax.swing.JLabel DiameterLabel;
         private javax.swing.JTextField DiameterTextField;
-        private javax.swing.JLabel ErrorReportingLabel;
         private javax.swing.JComboBox<String> GradeComboBox;
         private javax.swing.JLabel GradeLabel;
         private javax.swing.JCheckBox InsulationCheckBox;
+        private javax.swing.JLabel LengthErrorReportingLabel;
         private javax.swing.JLabel LengthLabel;
         private javax.swing.JTextField LengthTextField;
+        private javax.swing.JLabel QuantityErrorReportingLabel;
         private javax.swing.JLabel QuantityLabel;
         private javax.swing.JTextField QuantityTextField;
         private javax.swing.JCheckBox ReinforcementCheckBox;
         private javax.swing.JButton SubmitButton;
+        private javax.swing.JLabel SubmitFailiureLabel;
         // End of variables declaration//GEN-END:variables
 }

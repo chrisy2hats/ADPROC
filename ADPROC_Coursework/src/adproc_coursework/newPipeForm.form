@@ -23,30 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="QuantityTextField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="GradeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="DiameterLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="GradeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ErrorReportingLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="DiameterTextField" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="GradeComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="273" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="LengthLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="ColoursLabel" min="-2" max="-2" attributes="0"/>
@@ -56,14 +43,42 @@
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="QuantityLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="InsulationCheckBox" min="-2" max="-2" attributes="0"/>
-                          <Component id="ReinforcementCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ChemicalResistanceCheckBox" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="DiameterErrorReportingLabel" min="-2" pref="131" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="LengthErrorReportingLabel" min="-2" pref="208" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="QuantityLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="InsulationCheckBox" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ReinforcementCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ChemicalResistanceCheckBox" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="QuantityErrorReportingLabel" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="380" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="SubmitFailiureLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="QuantityTextField" min="-2" pref="214" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -84,16 +99,18 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="GradeLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="ColoursLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="DiameterErrorReportingLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="ErrorReportingLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="LengthErrorReportingLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="GradeLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="ColoursLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -109,10 +126,21 @@
                   <Component id="QuantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ChemicalResistanceCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="QuantityTextField" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="QuantityTextField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="SubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="QuantityErrorReportingLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="SubmitFailiureLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -170,9 +198,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GradeComboBoxActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -218,13 +243,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Chemical Resistance"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChemicalResistanceCheckBoxActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="ErrorReportingLabel">
+    <Component class="javax.swing.JLabel" name="LengthErrorReportingLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="This box will say when invalid input is done"/>
+        <Property name="text" type="java.lang.String" value="LengthErrorReportingLabel"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="QuantityTextField">
@@ -235,6 +257,18 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="QuantityTextFieldMouseClicked"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="QuantityTextFieldKeyReleased"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="QuantityErrorReportingLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="QuantityErrorReportingLabel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="DiameterErrorReportingLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DiameterErrorReportingLabel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="SubmitFailiureLabel">
     </Component>
   </SubComponents>
 </Form>

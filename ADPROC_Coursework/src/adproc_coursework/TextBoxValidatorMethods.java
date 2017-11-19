@@ -5,8 +5,8 @@
  */
 package adproc_coursework;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
 
 /**
  *
@@ -15,6 +15,9 @@ import java.util.regex.Pattern;
 public class TextBoxValidatorMethods {
 
 	public static boolean isValidInt(String input) {
+		if (input.equals("0")) {
+			return false;
+		}
 		try {
 			Integer.parseInt(input);
 
@@ -25,17 +28,21 @@ public class TextBoxValidatorMethods {
 	}
 
 	public static boolean isValidFloat(String input) {
+		if (input.equals("0.0") || input.equals("0")) {
+			return false;
+		}
 		try {
 			Float.parseFloat(input);
 
 		} catch (NumberFormatException e) {
 			return false;
 		}
-		if (!input.substring(input.length() - 1).equals(".")) {
+		if (!input.substring(input.length() - 1).equals(".")) { //Makes any string ending in "." invalid e.g. "." or "5."
 			return true;
 		} else {
 			return false;
 		}
+//			return true;
 	}
 
 }
