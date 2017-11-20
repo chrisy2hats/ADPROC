@@ -228,21 +228,60 @@ public class newPipeForm extends javax.swing.JFrame {
 		if ((!LengthErrorReportingLabel.getText().equals("")) || (!DiameterErrorReportingLabel.getText().equals("")) || (!QuantityErrorReportingLabel.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Please fix errors with input first");
 
-		//If they have entered input in all of the text fields
+			//If they have entered input in all of the text fields
 		} else if ((LengthTextField.getText().equals("")) || (DiameterTextField.getText().equals("")) || (QuantityTextField.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Requireed input is missing");
 		} else {
-			SubmitFailiureLabel.setText("New pipe successfully created!");
 
 			//Code to get value of a combo box
 			//int grade = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
-
 			//TODO Code to check if code entered is a valid kind of pipe.(One offered by the company)
-			//TODO Code to actually create a pipe in here
+			int gradeSelected = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
+			String colourSelectedString = (String) ColoursComboBox.getSelectedItem();// "(int)" converts from an object to a int
+//                ColoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Colours", "One Colour", "Two Colours" }));
+			int colourSelected = 0;
+			if (colourSelectedString.equals("One Colour")) {
+				colourSelected = 1;
+			} else if (colourSelectedString.equals("Two Colours")){
+				colourSelected = 2;
+			}
+
+			boolean insulationSelected = InsulationCheckBox.isSelected();
+			boolean reinforcementSelected = ReinforcementCheckBox.isSelected();
+			int pipeToCreate = choosePipe(gradeSelected, colourSelected, insulationSelected, reinforcementSelected);
+			System.out.println("pipeToCreate = " + pipeToCreate);
+			if (pipeToCreate == 0) {
+
+			SubmitFailiureLabel.setText("Sorry we do not offer a pipe with the criteria you have selected");
+			} else {
+				SubmitFailiureLabel.setText("New pipe successfully created!");
+			}
 		}
+	}
+
+	//Create the appropriate pipe or 
+	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO this is untested and should not be relied on
+		if (grade <= 3 && grade > 0 && colour == 0 && insulation == false && reinforcement == false) {
+			return 1;
+		} else if (grade <= 4 && grade > 1 && colour == 1 && insulation == false && reinforcement == false) {
+			//create a object of pipe II
+			return 2;
+		} else if (grade <= 5 && grade > 1 && colour == 2 && insulation == false && reinforcement == false) {
+			//create a object of pipe III
+			return 3;
+		} else if (grade <= 5 && grade > 1 && colour == 2 && insulation == true && reinforcement == false) {
+			//create o object of pipe IV
+			return 4;
+		} else if (grade <= 5 && grade > 2 && colour == 2 && insulation == true && reinforcement == true) {
+			//create a object of pipe V
+			return 5;
+		} else {
+			return 0;
+		}
+		//TODO Code to actually create a pipe in here
         }//GEN-LAST:event_SubmitButtonActionPerformed
 
-	//3 methods below remove initial text from text boxes when they are clicked on
+//3 methods below remove initial text from text boxes when they are clicked on
         private void DiameterTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiameterTextFieldMouseClicked
 		//When user clicks to edit the text in the text field
 		DiameterTextField.setText("");
@@ -262,7 +301,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		//Checks if it is a valid int or float and is less than 6m long
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(LengthTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(LengthTextField.getText());
-		if (!(ValidInt || ValidFloat)) { 
+		if (!(ValidInt || ValidFloat)) {
 			LengthErrorReportingLabel.setText("Invalid input in length");
 		} else if (Float.parseFloat(LengthTextField.getText()) <= 6) {
 			LengthErrorReportingLabel.setText("");
