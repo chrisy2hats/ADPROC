@@ -11,11 +11,17 @@ package adproc_coursework;
  */
 public class PipeTypeI extends LongPipe {
     
-    public PipeTypeI(int newLength, int newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
-        super(newLength, newDiameter, newNumColour, newNumOfPipes, newChemicalResist, newInsulation, newReinforcement);
+    public PipeTypeI(int newGrade ,int newLength, int newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
+        super(newGrade ,newLength, newDiameter, newNumColour, newNumOfPipes, newChemicalResist, newInsulation, newReinforcement);
     }
-    public double cost(double volume,double price,double extra){
-       return (volume*1)*extra;
+     public double cost(double volume,double price,boolean ChemResist){
+      double costOfPipe = volume*price;
+      double extra = 1;
+      if (ChemResist == true){
+          extra += 0.14;
+      }
+      
+      return costOfPipe*extra;
 }
 
 }

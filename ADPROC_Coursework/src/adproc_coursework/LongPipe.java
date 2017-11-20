@@ -11,13 +11,13 @@ package adproc_coursework;
  */
 public abstract class LongPipe {
 
-    private int lengthInMeters , diameterInInches , numOfColour , numOfPipes;
+   private int lengthInMeters , diameterInInches , numOfColour , numOfPipes,grade;
     private boolean chemicalResist,insulation,reinforcement;
     
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    public LongPipe(int newLength,int newDiameter,int newNumColour, int newNumOfPipes,boolean newChemicalResist,boolean newInsulation,boolean newReinforcement){
+    public LongPipe(int newGrade,int newLength,int newDiameter,int newNumColour, int newNumOfPipes,boolean newChemicalResist,boolean newInsulation,boolean newReinforcement){
         lengthInMeters = newLength;
         diameterInInches = newDiameter;
         numOfColour = newNumColour;
@@ -25,6 +25,7 @@ public abstract class LongPipe {
         chemicalResist = newChemicalResist;
         insulation = newInsulation;
         reinforcement = newReinforcement;
+        grade = newGrade;
     }
     public double calculateVolume(int newLength,int newDiameter){
         //The volume of a cylinder = V=πr^2h
@@ -42,7 +43,7 @@ public abstract class LongPipe {
     public double convertMeterToInch(int newLength){
         return newLength / 0.0254;
     }
-    public abstract double cost(double volume,double price,double extra);
+    public abstract double cost(double volume,double price,boolean ChemResist);
         
     
     
