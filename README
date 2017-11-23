@@ -3,9 +3,13 @@ Repo for ADPROC Coursework
 
 TODO List:
 Required:
+Change inheritance layout to Pipes 1,2 and 3 inheriting from LongPipe then 4 and 5 inheriting from pipe 3
+Store created pipes somehow. List in main class?
 Also search code for "TODO" in comments
-
-
+Pass the newly created pipe too getPipeData not a hard coded example
 
 Extension(May get us extra marks)
 Make FormValidatorMethods use regex not try catch
+
+Bugs:
+New pipe created without checking Quantity. Default quantity textbox contents allows for a new pipe to be created
