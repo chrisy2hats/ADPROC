@@ -61,9 +61,15 @@ public class newPipeForm extends javax.swing.JFrame {
                 LengthLabel.setText("Length(m)");
 
                 DiameterTextField.setText("Enter Diameter");
+                DiameterTextField.setMinimumSize(new java.awt.Dimension(99, 19));
                 DiameterTextField.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 DiameterTextFieldMouseClicked(evt);
+                        }
+                });
+                DiameterTextField.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                DiameterTextFieldActionPerformed(evt);
                         }
                 });
                 DiameterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -88,7 +94,7 @@ public class newPipeForm extends javax.swing.JFrame {
 
                 ColoursLabel.setText("Colours");
 
-                GradeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "3", "4", "5" }));
+                GradeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
                 ColoursComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Colours", "One Colour", "Two Colours" }));
 
@@ -145,7 +151,7 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(GradeLabel)
                                                         .addComponent(DiameterLabel)
-                                                        .addComponent(DiameterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(DiameterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(GradeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,6 +413,10 @@ public class newPipeForm extends javax.swing.JFrame {
 			QuantityErrorReportingLabel.setText("");
 		}
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
+
+        private void DiameterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiameterTextFieldActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_DiameterTextFieldActionPerformed
 	/**
 	 * @param args the command line arguments
 	 */

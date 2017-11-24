@@ -34,7 +34,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="GradeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="DiameterLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="DiameterTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="DiameterTextField" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                           <Component id="GradeComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="273" max="32767" attributes="0"/>
@@ -168,9 +168,13 @@
     <Component class="javax.swing.JTextField" name="DiameterTextField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Diameter"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[99, 19]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DiameterTextFieldMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DiameterTextFieldActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DiameterTextFieldKeyReleased"/>
       </Events>
     </Component>
@@ -196,13 +200,12 @@
     <Component class="javax.swing.JComboBox" name="GradeComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="5">
             <StringItem index="0" value="1"/>
             <StringItem index="1" value="2"/>
             <StringItem index="2" value="3"/>
-            <StringItem index="3" value="3"/>
-            <StringItem index="4" value="4"/>
-            <StringItem index="5" value="5"/>
+            <StringItem index="3" value="4"/>
+            <StringItem index="4" value="5"/>
           </StringArray>
         </Property>
       </Properties>
