@@ -20,13 +20,11 @@ public class ADPROC_Coursework {
 
 	public static void main(String[] args) {
 		// TODO code application logic here
-//		List<String> createdPipes;
-//		ArrayList myList = new ArrayList();
-//		ArrayList ListOfOrderedPipes = new ArrayList();
 		newPipeForm test = new newPipeForm();
-		test.main();//HENLO
+		test.main();
 	}
-	public void addPipeToList(){
-		//TODO
+
+	public void addPipeToList(LongPipe newPipe) {
+		ListOfOrderedPipes.add(newPipe);
 	}
 }

@@ -7,9 +7,11 @@ Change inheritance layout to Pipes 1,2 and 3 inheriting from LongPipe then 4 and
 Store created pipes somehow. List in main class?
 Also search code for "TODO" in comments
 Pass the newly created pipe too getPipeData not a hard coded example
+Clear form upon submit pressed
 
 Extension(May get us extra marks)
 Make FormValidatorMethods use regex not try catch
+Make pipes that are identical merge into one whilst adding their quantity
 
 Bugs:
 New pipe created without checking Quantity. Default quantity textbox contents allows for a new pipe to be created

@@ -19,7 +19,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		initComponents();
 		//Makes the error labels invisible to the user at the start without having to deal with .setVisible
 		DiameterErrorReportingLabel.setText(" ");
-		QuantityErrorReportingLabel.setText("");
+		QuantityErrorReportingLabel.setText(" ");
 		LengthErrorReportingLabel.setText(" ");
 	}
 
@@ -250,9 +250,6 @@ public class newPipeForm extends javax.swing.JFrame {
 			SubmitFailiureLabel.setText("New pipe not created.Requireed input is missing");
 		} else {
 
-			//Code to get value of a combo box
-			//int grade = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
-			//TODO Code to check if code entered is a valid kind of pipe.(One offered by the company)
 			int gradeSelected = Integer.parseInt((String) GradeComboBox.getSelectedItem());// "(int)" converts from an object to a int
 			String colourSelectedString = (String) ColoursComboBox.getSelectedItem();// "(int)" converts from an object to a int
 			int colourSelected = 0;
@@ -270,18 +267,18 @@ public class newPipeForm extends javax.swing.JFrame {
 				SubmitFailiureLabel.setText("Sorry we do not offer a pipe with the criteria you have selected");
 			} else {
 				SubmitFailiureLabel.setText("New pipe successfully created!");
-				PipeTypeI TestPipe = new PipeTypeI(1, 4, 5, 0, 5, false, false, false);
-				addNewPipeToBasket(getPipeData(TestPipe));
-				//TODO now create the appropriate pipe object
+				//Creating the new pipe object
+				int Length = Integer.parseInt(LengthTextField.getText());
+				int Diameter = Integer.parseInt(DiameterTextField.getText());
+				int Quantity = Integer.parseInt(QuantityTextField.getText());
+				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
+				PipeTypeI TestPipe = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+
+				addNewPipeToBasket(getPipeData(TestPipe));//Putting the newly created pipe in the basket
+//				ADPROC_Coursework.addPipeToList(TestPie);
+				//TODO now clear the form interface of input
 			}
 		}
-	}
-
-	private void createNewPipe() {
-		//TODO
-		//Need to also add pipe to arraylst in ADPROC_Coursework
-//		ADPROC_Coursework.addPipeToList();
-
 	}
 
 	private String getPipeData(LongPipe pipe) {
@@ -308,11 +305,10 @@ public class newPipeForm extends javax.swing.JFrame {
 		} else {
 			chemicalResistance = "\tNot resistance to chemicals";
 		}
-		//volume price chemrist
-		//volume of pipe
 
+//		float costOfPipe = pipe.cost();//TODO //Calculate the cost
 		String pipeQuantity = String.valueOf(pipe.getNumOfPipes());
-		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: ");//+costOfPipe);//TODO calculate and output price
+		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: "+"TODO cost of pipe. Line 311 in newPipeForm");//costOfPipe);//TODO calculate and output price
 	}
 
 	private void addNewPipeToBasket(String textToAdd) {

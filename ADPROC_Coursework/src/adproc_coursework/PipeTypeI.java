@@ -6,7 +6,6 @@
 package adproc_coursework;
 
 /**
- *
  * @author up808621
  */
 public class PipeTypeI extends LongPipe {
