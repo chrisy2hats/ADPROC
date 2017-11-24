@@ -281,6 +281,24 @@ public class newPipeForm extends javax.swing.JFrame {
 		}
 	}
 
+	private double priceOfGradePlastic(int gradeOfPlastic) {
+		switch (gradeOfPlastic) {
+			case 1:
+				return 0.4;
+			case 2:
+				return 0.6;
+			case 3:
+				return 0.75;
+			case 4:
+				return 0.8;
+			case 5:
+				return 0.95;
+			default://This code should never be reached.
+				return 0;
+		}
+
+	}
+
 	private String getPipeData(LongPipe pipe) {
 		//Return a string displaying the pipes attributes to be put into the text box on the user interface
 		String pipeGrade = String.valueOf(pipe.getGrade());
@@ -306,9 +324,14 @@ public class newPipeForm extends javax.swing.JFrame {
 			chemicalResistance = "\tNot resistance to chemicals";
 		}
 
-//		float costOfPipe = pipe.cost();//TODO //Calculate the cost
+		//volume() wants length and diameter 
+		//cost() Wants volume price and chemical resistance
+		double volume = pipe.calculateVolume(pipe.getLength(), pipe.getDiameter());
+		double price = priceOfGradePlastic(pipe.getGrade()); //Price of the grade of plastic being used
+		double costOfPipe = pipe.cost(volume, price, pipe.getChemicalResistance());//TODO //Calculate the cost
 		String pipeQuantity = String.valueOf(pipe.getNumOfPipes());
-		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: "+"TODO cost of pipe. Line 311 in newPipeForm");//costOfPipe);//TODO calculate and output price
+//		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: "+"TODO cost of pipe. Line 311 in newPipeForm");//costOfPipe);//TODO calculate and output price
+		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: " + costOfPipe);//TODO calculate and output price
 	}
 
 	private void addNewPipeToBasket(String textToAdd) {

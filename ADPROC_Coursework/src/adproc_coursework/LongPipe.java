@@ -30,7 +30,7 @@ public abstract class LongPipe {
 		grade = newGrade;
 	}
 
-	public double calculateVolume(int newLength, int newDiameter) {
+	public double calculateVolume(float newLength, float newDiameter) {
 		//The volume of a cylinder = V=πr^2h
 		double totalVolume;
 		double innerVolume;
