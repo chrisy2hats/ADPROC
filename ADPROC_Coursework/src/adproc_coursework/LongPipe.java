@@ -37,14 +37,17 @@ public abstract class LongPipe {
 		double volume;
 		double radius = newDiameter / 2;
 		double innerRadius = radius * 0.9;
-		totalVolume = Math.PI * Math.pow(radius, 2) * newLength;
-		innerVolume = Math.PI * Math.pow(innerRadius, 2) * newLength;
+		totalVolume = Math.PI * Math.pow(radius, 2) * convertMeterToInch(newLength);
+                                                 System.out.println(totalVolume);
+		innerVolume = Math.PI * Math.pow(innerRadius, 2) * convertMeterToInch(newLength);
 		volume = totalVolume - innerVolume;
+                                                System.out.println(volume);
 		return volume;
+                
 
 	}
 
-	public double convertMeterToInch(int newLength) {
+	public double convertMeterToInch(float newLength) {
 		return newLength / 0.0254;
 	}
 
@@ -88,11 +91,11 @@ public abstract class LongPipe {
 	}
 
 	public float getLength() {
-		return this.grade;
+		return this.lengthInMeters ;
 	}
 
 	public float getDiameter() {
-		return this.grade;
+		return this.diameterInInches;
 	}
 
 	public int getNumOfColour() {
