@@ -3,6 +3,8 @@ Repo for ADPROC Coursework
 
 TODO List:
 Required:
+Removed duplicate 3 in grade drop down box
+Pipes 4 and 5 dont exist
 Change inheritance layout to Pipes 1,2 and 3 inheriting from LongPipe then 4 and 5 inheriting from pipe 3
 Store created pipes somehow. List in main class?
 Also search code for "TODO" in comments
