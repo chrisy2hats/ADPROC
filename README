@@ -3,17 +3,13 @@ Repo for ADPROC Coursework
 
 TODO List:
 Required:
-Removed duplicate 3 in grade drop down box
-Pipes 4 and 5 dont exist
-Change inheritance layout to Pipes 1,2 and 3 inheriting from LongPipe then 4 and 5 inheriting from pipe 3
-Store created pipes somehow. List in main class?
+store pipe objects in main class in list - add subtotal
+clear upon submit button pressed
 Also search code for "TODO" in comments
-Pass the newly created pipe too getPipeData not a hard coded example
 Clear form upon submit pressed
+
 
 Extension(May get us extra marks)
 Make FormValidatorMethods use regex not try catch
 Make pipes that are identical merge into one whilst adding their quantity
 
-Bugs:
-New pipe created without checking Quantity. Default quantity textbox contents allows for a new pipe to be created
