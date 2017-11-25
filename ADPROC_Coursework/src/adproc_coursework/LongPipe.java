@@ -38,12 +38,11 @@ public abstract class LongPipe {
 		double radius = newDiameter / 2;
 		double innerRadius = radius * 0.9;
 		totalVolume = Math.PI * Math.pow(radius, 2) * convertMeterToInch(newLength);
-                                                 System.out.println(totalVolume);
+		System.out.println(totalVolume);
 		innerVolume = Math.PI * Math.pow(innerRadius, 2) * convertMeterToInch(newLength);
 		volume = totalVolume - innerVolume;
-                                                System.out.println(volume);
+		System.out.println(volume);
 		return volume;
-                
 
 	}
 
@@ -90,36 +89,53 @@ public abstract class LongPipe {
 		}
 	}
 
-	public float getLength() {
-		return this.lengthInMeters ;
+	public String getPipeData() {
+		//Return a string displaying the pipes attributes to be put into the text box on the user interface
+		String pipeGrade = String.valueOf(this.grade);
+		String pipeLength = String.valueOf(this.lengthInMeters);
+		String pipeDiameter = String.valueOf(this.diameterInInches);
+		String pipeColour = String.valueOf(this.numOfColour);
+		String insulation;
+		if (this.insulation) { //If the pipe is insulated
+			insulation = "\tInsulated";
+		} else {
+			insulation = "\tNot insulated";
+		}
+		String reinforcement;
+		if (this.reinforcement) {//Pipe is reinforced
+			reinforcement = "\tReinforced";
+		} else {
+			reinforcement = "\tNot reinforced";
+		}
+		String chemicalResistance;
+		if (this.chemicalResist) {
+			chemicalResistance = "\tResistance to chemical resistance";
+		} else {
+			chemicalResistance = "\tNot resistance to chemicals";
+		}
+
+		double volume = this.calculateVolume(this.lengthInMeters, this.diameterInInches);
+		double price = priceOfGradePlastic(this.grade); //Price of the grade of plastic being used
+		double costOfPipe = this.cost(volume, price, this.chemicalResist);
+		String pipeQuantity = String.valueOf(this.numOfPipes);
+		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: " + (costOfPipe * (this.numOfPipes)));
 	}
 
-	public float getDiameter() {
-		return this.diameterInInches;
-	}
+	public double priceOfGradePlastic(int gradeOfPlastic) {
+		switch (gradeOfPlastic) {
+			case 1:
+				return 0.4;
+			case 2:
+				return 0.6;
+			case 3:
+				return 0.75;
+			case 4:
+				return 0.8;
+			case 5:
+				return 0.95;
+			default://This code should never be reached.
+				return 0;
+		}
 
-	public int getNumOfColour() {
-		return this.numOfColour;
 	}
-
-	public int getGrade() {
-		return this.grade;
-	}
-
-	public int getNumOfPipes() {
-		return this.numOfPipes;
-	}
-
-	public boolean getChemicalResistance() {
-		return this.chemicalResist;
-	}
-
-	public boolean getInsulation() {
-		return this.insulation;
-	}
-
-	public boolean getReinforcement() {
-		return this.reinforcement;
-	}
-
 }

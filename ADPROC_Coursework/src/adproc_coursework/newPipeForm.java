@@ -279,69 +279,11 @@ public class newPipeForm extends javax.swing.JFrame {
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
 				PipeTypeI TestPipe = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-
-				addNewPipeToBasket(getPipeData(TestPipe));//Putting the newly created pipe in the basket
-//				ADPROC_Coursework.addPipeToList(TestPie);
+				BasketTextBox.setText(BasketTextBox.getText() + TestPipe.getPipeData() + "\n");//Putting the newly created pipe in the basket
+				//Might be possible to see an append method look at TextBox.add
 				//TODO now clear the form interface of input
 			}
 		}
-	}
-
-	private double priceOfGradePlastic(int gradeOfPlastic) {
-		switch (gradeOfPlastic) {
-			case 1:
-				return 0.4;
-			case 2:
-				return 0.6;
-			case 3:
-				return 0.75;
-			case 4:
-				return 0.8;
-			case 5:
-				return 0.95;
-			default://This code should never be reached.
-				return 0;
-		}
-
-	}
-
-	private String getPipeData(LongPipe pipe) {
-		//Return a string displaying the pipes attributes to be put into the text box on the user interface
-		String pipeGrade = String.valueOf(pipe.getGrade());
-		String pipeLength = String.valueOf(pipe.getLength());
-		String pipeDiameter = String.valueOf(pipe.getDiameter());
-		String pipeColour = String.valueOf(pipe.getNumOfColour());
-		String insulation;
-		if (pipe.getInsulation()) { //If the pipe is insulated
-			insulation = "\tInsulated";
-		} else {
-			insulation = "\tNot insulated";
-		}
-		String reinforcement;
-		if (pipe.getReinforcement()) {//Pipe is reinforced
-			reinforcement = "\tReinforced";
-		} else {
-			reinforcement = "\tNot reinforced";
-		}
-		String chemicalResistance;
-		if (pipe.getChemicalResistance()) {
-			chemicalResistance = "\tResistance to chemical resistance";
-		} else {
-			chemicalResistance = "\tNot resistance to chemicals";
-		}
-
-		//volume() wants length and diameter 
-		//cost() Wants volume price and chemical resistance
-		double volume = pipe.calculateVolume(pipe.getLength(), pipe.getDiameter());
-		double price = priceOfGradePlastic(pipe.getGrade()); //Price of the grade of plastic being used
-		double costOfPipe = pipe.cost(volume, price, pipe.getChemicalResistance());//TODO //Calculate the cost
-		String pipeQuantity = String.valueOf(pipe.getNumOfPipes());
-//		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: "+"TODO cost of pipe. Line 311 in newPipeForm");//costOfPipe);//TODO calculate and output price
-		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: " + (costOfPipe*(pipe.getNumOfPipes())));//TODO calculate and output price
-	}
-
-	private void addNewPipeToBasket(String textToAdd) {
-		BasketTextBox.setText(BasketTextBox.getText() + "\n" + textToAdd); //Might be possible to see an append method look at TextBox.add
 	}
 
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
@@ -415,7 +357,7 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 
         private void DiameterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiameterTextFieldActionPerformed
-                // TODO add your handling code here:
+		// TODO add your handling code here:
         }//GEN-LAST:event_DiameterTextFieldActionPerformed
 	/**
 	 * @param args the command line arguments

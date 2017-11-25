@@ -12,4 +12,3 @@ Clear form upon submit pressed
 Extension(May get us extra marks)
 Make FormValidatorMethods use regex not try catch
 Make pipes that are identical merge into one whilst adding their quantity
-

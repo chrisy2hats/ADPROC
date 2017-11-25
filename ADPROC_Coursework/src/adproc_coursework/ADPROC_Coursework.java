@@ -16,7 +16,7 @@ public class ADPROC_Coursework {
 	/**
 	 * @param args the command line arguments
 	 */
-	private ArrayList<LongPipe> ListOfOrderedPipes = new ArrayList();
+	public ArrayList<LongPipe> ListOfOrderedPipes = new ArrayList();
 
 	public static void main(String[] args) {
 		// TODO code application logic here
