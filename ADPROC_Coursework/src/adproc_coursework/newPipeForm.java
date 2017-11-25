@@ -337,7 +337,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		double costOfPipe = pipe.cost(volume, price, pipe.getChemicalResistance());//TODO //Calculate the cost
 		String pipeQuantity = String.valueOf(pipe.getNumOfPipes());
 //		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: "+"TODO cost of pipe. Line 311 in newPipeForm");//costOfPipe);//TODO calculate and output price
-		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: " + costOfPipe);//TODO calculate and output price
+		return ("Grade Of Plastic: " + pipeGrade + "\tLength of pipe: " + pipeLength + "\tDiameter of pipe: " + pipeDiameter + pipeColour + insulation + reinforcement + "\tQuantity: " + pipeQuantity + "Price: " + (costOfPipe*(pipe.getNumOfPipes())));//TODO calculate and output price
 	}
 
 	private void addNewPipeToBasket(String textToAdd) {
