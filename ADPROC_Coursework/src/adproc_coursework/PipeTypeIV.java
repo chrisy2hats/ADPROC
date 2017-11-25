@@ -11,7 +11,7 @@ package adproc_coursework;
  */
 public class PipeTypeIV extends LongPipe {
     
-    public PipeTypeIV(int newGrade ,int newLength, int newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
+    public PipeTypeIV(int newGrade ,float newLength, float newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
         super(newGrade ,newLength, newDiameter, newNumColour, newNumOfPipes, newChemicalResist, newInsulation, newReinforcement);
     }
     public double cost(double volume,double price,boolean ChemResist){

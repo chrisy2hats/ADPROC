@@ -19,7 +19,7 @@ public abstract class LongPipe {
 		// TODO code application logic here
 	}
 
-	public LongPipe(int newGrade, int newLength, int newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
+	public LongPipe(int newGrade, float newLength, float newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
 		lengthInMeters = newLength;
 		diameterInInches = newDiameter;
 		numOfColour = newNumColour;
@@ -73,19 +73,20 @@ public abstract class LongPipe {
 
 	}
 
-	public double priceGrade(double grade) {
-		if (grade == 1) {
-			return 0.4;
-		} else if (grade == 2) {
-			return 0.6;
-		} else if (grade == 3) {
-			return 0.75;
-		} else if (grade == 4) {
-			return 0.8;
-		} else if (grade == 5) {
-			return 0.95;
-		} else {
-			return 0;
+	public double priceGrade(int grade) {
+		switch (grade) {
+			case 1:
+				return 0.4;
+			case 2:
+				return 0.6;
+			case 3:
+				return 0.75;
+			case 4:
+				return 0.8;
+			case 5:
+				return 0.95;
+			default:
+				return 0; //Should never be reached
 		}
 	}
 

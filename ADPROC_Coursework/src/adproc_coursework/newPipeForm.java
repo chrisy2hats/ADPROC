@@ -274,12 +274,36 @@ public class newPipeForm extends javax.swing.JFrame {
 			} else {
 				SubmitFailiureLabel.setText("New pipe successfully created!");
 				//Creating the new pipe object
-				int Length = Integer.parseInt(LengthTextField.getText());
-				int Diameter = Integer.parseInt(DiameterTextField.getText());
+				float Length = Float.parseFloat(LengthTextField.getText());
+				float Diameter = Float.parseFloat(DiameterTextField.getText());
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
-				PipeTypeI TestPipe = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-				BasketTextBox.setText(BasketTextBox.getText() + TestPipe.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//				PipeTypeI TestPipe = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+				switch (pipeToCreate) {
+					case 1:
+						System.out.println("TYPE1");
+						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						break;
+					case 2:
+						System.out.println("TYPE2");
+						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						BasketTextBox.setText(BasketTextBox.getText() + pipe2.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						break;
+					case 3:
+						PipeTypeIII pipe3 = new PipeTypeIII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						BasketTextBox.setText(BasketTextBox.getText() + pipe3.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						break;
+					case 4:
+						PipeTypeIV pipe4 = new PipeTypeIV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						BasketTextBox.setText(BasketTextBox.getText() + pipe4.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						break;
+					case 5:
+						PipeTypeV pipe5 = new PipeTypeV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						BasketTextBox.setText(BasketTextBox.getText() + pipe5.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						break;
+
+				}
 				//Might be possible to see an append method look at TextBox.add
 				//TODO now clear the form interface of input
 			}
@@ -296,7 +320,7 @@ public class newPipeForm extends javax.swing.JFrame {
 			//create a object of pipe III
 			return 3;
 		} else if (grade <= 5 && grade > 1 && colour == 2 && insulation == true && reinforcement == false) {
-			//create o object of pipe IV
+			//create a object of pipe IV
 			return 4;
 		} else if (grade <= 5 && grade > 2 && colour == 2 && insulation == true && reinforcement == true) {
 			//create a object of pipe V
