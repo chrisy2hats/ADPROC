@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package adproc_coursework;
 
 /**
@@ -73,22 +68,6 @@ public abstract class LongPipe {
 
 	}
 
-	public double priceGrade(int grade) {
-		switch (grade) {
-			case 1:
-				return 0.4;
-			case 2:
-				return 0.6;
-			case 3:
-				return 0.75;
-			case 4:
-				return 0.8;
-			case 5:
-				return 0.95;
-			default:
-				return 0; //Should never be reached
-		}
-	}
 
 	public String getPipeData() {
 		//Return a string displaying the pipes attributes to be put into the text box on the user interface
