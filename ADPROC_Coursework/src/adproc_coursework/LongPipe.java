@@ -99,7 +99,7 @@ public abstract class LongPipe {
 		double costOfPipe = this.cost(volume, price, this.chemicalResist);
 		String pipeQuantity = String.valueOf(this.numOfPipes);
 		double finalPrice = Math.round( costOfPipe * this.numOfPipes* 100.0)/100.0;
-		return new String[]{("Grade Of Plastic: "+pipeGrade),("Length of pipe: "+pipeLength),("Diameter of pipe: "+pipeDiameter),("Number of colours: "+pipeColour),insulation,reinforcement,("Quantity: "+pipeQuantity),("Price: £"+finalPrice)};
+		return new String[]{("Grade Of Plastic: "+pipeGrade),("Length of pipe: "+pipeLength),("Diameter of pipe: "+pipeDiameter),("Number of colours: "+pipeColour),insulation,reinforcement,("Quantity: "+pipeQuantity),""+finalPrice};
 	}
 
 	public double priceOfGradePlastic(int gradeOfPlastic) {

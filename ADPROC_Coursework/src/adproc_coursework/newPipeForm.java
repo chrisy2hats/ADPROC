@@ -23,6 +23,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		DiameterErrorReportingLabel.setText(" ");
 		QuantityErrorReportingLabel.setText(" ");
 		LengthErrorReportingLabel.setText(" ");
+		TotalDisplayLabel.setText("0");
 	}
 
 	/**
@@ -57,6 +58,8 @@ public class newPipeForm extends javax.swing.JFrame {
                 BasketTextBoxLabel = new javax.swing.JLabel();
                 jScrollPane3 = new javax.swing.JScrollPane();
                 BasketTable = new javax.swing.JTable();
+                TotalNameLabel = new javax.swing.JLabel();
+                TotalDisplayLabel = new javax.swing.JLabel();
 
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -185,6 +188,10 @@ public class newPipeForm extends javax.swing.JFrame {
                         BasketTable.getColumnModel().getColumn(7).setResizable(false);
                 }
 
+                TotalNameLabel.setText("Total");
+
+                TotalDisplayLabel.setText("TotalDisplayLabel");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -234,6 +241,12 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                                 .addGap(141, 141, 141)))
                                                                 .addComponent(SubmitButton)))
                                                 .addContainerGap())))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(TotalDisplayLabel)
+                                        .addComponent(TotalNameLabel))
+                                .addGap(30, 30, 30))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +297,11 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addComponent(BasketTextBoxLabel)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(96, Short.MAX_VALUE))
+                                .addGap(36, 36, 36)
+                                .addComponent(TotalNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TotalDisplayLabel)
+                                .addContainerGap(24, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -327,7 +344,12 @@ public class newPipeForm extends javax.swing.JFrame {
 					case 1:
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 //						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
-						BasketTableModel.addRow(pipe1.getPipeData());
+						String[] pipeData = pipe1.getPipeData();
+						double price = Double.parseDouble(pipeData[7]);
+						System.out.println("price" + price);
+						pipeData[7] = "Price: £" + pipeData[7];
+						BasketTableModel.addRow(pipeData);
+						addToTotal(price);
 						break;
 					case 2:
 						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
@@ -347,10 +369,16 @@ public class newPipeForm extends javax.swing.JFrame {
 						break;
 
 				}
+				//Adding the price of the new pipe to the total price
+//		double finalPrice = Math.round( costOfPipe * this.numOfPipes* 100.0)/100.0;
 				//Might be possible to see an append method look at TextBox.add
 				//TODO now clear the form interface of input
 			}
 		}
+	}
+
+	private void addToTotal(double amount) {
+		TotalDisplayLabel.setText(Double.toString(Double.parseDouble(TotalDisplayLabel.getText()) + amount));
 	}
 
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
@@ -490,6 +518,8 @@ public class newPipeForm extends javax.swing.JFrame {
         private javax.swing.JCheckBox ReinforcementCheckBox;
         private javax.swing.JButton SubmitButton;
         private javax.swing.JLabel SubmitFailiureLabel;
+        private javax.swing.JLabel TotalDisplayLabel;
+        private javax.swing.JLabel TotalNameLabel;
         private javax.swing.JScrollPane jScrollPane2;
         private javax.swing.JScrollPane jScrollPane3;
         private javax.swing.JTable jTable1;

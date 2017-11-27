@@ -3,10 +3,17 @@ Repo for ADPROC Coursework
 
 TODO List:
 Required:
+Round to two decimal places isn't working on very large values
+Delete pipe button. Remember to remove it from price
+The total is currently rounded to two decimal places. This could result in the incorrect value after multiple pipes are added
+Deny negative inputs
+change to table
+store running total in label
 store pipe objects in main class in list - add subtotal
 clear upon submit button pressed
 Also search code for "TODO" in comments
 Clear form upon submit pressed
+Rearrange hierarchy
 
 
 Extension(May get us extra marks)
