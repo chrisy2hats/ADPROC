@@ -5,6 +5,8 @@
  */
 package adproc_coursework;
 
+import javax.swing.table.*;
+
 /**
  * Diameter and length are text fields Grade , colours and quantity are combo
  * boxes Insulation , reinforcement and chemical resistance are radio buttons
@@ -32,6 +34,8 @@ public class newPipeForm extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
+                jScrollPane2 = new javax.swing.JScrollPane();
+                jTable1 = new javax.swing.JTable();
                 DiameterLabel = new javax.swing.JLabel();
                 LengthLabel = new javax.swing.JLabel();
                 DiameterTextField = new javax.swing.JTextField();
@@ -51,8 +55,21 @@ public class newPipeForm extends javax.swing.JFrame {
                 DiameterErrorReportingLabel = new javax.swing.JLabel();
                 SubmitFailiureLabel = new javax.swing.JLabel();
                 BasketTextBoxLabel = new javax.swing.JLabel();
-                jScrollPane1 = new javax.swing.JScrollPane();
-                BasketTextBox = new javax.swing.JTextArea();
+                jScrollPane3 = new javax.swing.JScrollPane();
+                BasketTable = new javax.swing.JTable();
+
+                jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+                                {null, null, null, null},
+                                {null, null, null, null},
+                                {null, null, null, null},
+                                {null, null, null, null}
+                        },
+                        new String [] {
+                                "Title 1", "Title 2", "Title 3", "Title 4"
+                        }
+                ));
+                jScrollPane2.setViewportView(jTable1);
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,9 +150,40 @@ public class newPipeForm extends javax.swing.JFrame {
 
                 BasketTextBoxLabel.setText("Your basket");
 
-                BasketTextBox.setColumns(20);
-                BasketTextBox.setRows(5);
-                jScrollPane1.setViewportView(BasketTextBox);
+                BasketTable.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object [][] {
+
+                        },
+                        new String [] {
+                                "Grade of plastic", "Length of pipe(m)", "Diameter(inches)", "Number of colours", "Insultation", "Reinforcement", "Quantity", "Price"
+                        }
+                ) {
+                        Class[] types = new Class [] {
+                                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                        };
+                        boolean[] canEdit = new boolean [] {
+                                false, false, false, true, true, false, true, false
+                        };
+
+                        public Class getColumnClass(int columnIndex) {
+                                return types [columnIndex];
+                        }
+
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return canEdit [columnIndex];
+                        }
+                });
+                jScrollPane3.setViewportView(BasketTable);
+                if (BasketTable.getColumnModel().getColumnCount() > 0) {
+                        BasketTable.getColumnModel().getColumn(0).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(1).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(2).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(3).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(4).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(5).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(6).setResizable(false);
+                        BasketTable.getColumnModel().getColumn(7).setResizable(false);
+                }
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -144,8 +192,8 @@ public class newPipeForm extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jScrollPane3)
                                                 .addContainerGap())
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +201,7 @@ public class newPipeForm extends javax.swing.JFrame {
                                                         .addComponent(DiameterLabel)
                                                         .addComponent(DiameterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(GradeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(273, 397, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(LengthLabel)
                                                         .addComponent(ColoursLabel)
@@ -168,26 +216,23 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                 .addComponent(LengthErrorReportingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(QuantityLabel)
+                                                                        .addComponent(BasketTextBoxLabel)
+                                                                        .addComponent(QuantityErrorReportingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(QuantityLabel)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 442, Short.MAX_VALUE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                         .addComponent(InsulationCheckBox)
                                                                                         .addComponent(ReinforcementCheckBox)
                                                                                         .addComponent(ChemicalResistanceCheckBox))
                                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(BasketTextBoxLabel)
-                                                                                .addGap(380, 591, Short.MAX_VALUE))
                                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                .addComponent(QuantityErrorReportingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addGap(185, 185, 185)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                 .addComponent(SubmitFailiureLabel)
                                                                                 .addGap(141, 141, 141)))
-                                                                .addComponent(SubmitButton))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                                .addComponent(SubmitButton)))
                                                 .addContainerGap())))
                 );
                 layout.setVerticalGroup(
@@ -237,9 +282,9 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addComponent(QuantityErrorReportingLabel)
                                                 .addGap(19, 19, 19)
                                                 .addComponent(BasketTextBoxLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(96, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -268,7 +313,6 @@ public class newPipeForm extends javax.swing.JFrame {
 			boolean insulationSelected = InsulationCheckBox.isSelected();
 			boolean reinforcementSelected = ReinforcementCheckBox.isSelected();
 			int pipeToCreate = choosePipe(gradeSelected, colourSelected, insulationSelected, reinforcementSelected);
-			System.out.println("pipeToCreate = " + pipeToCreate); //TODO remove only for debugging
 			if (pipeToCreate == 0) {
 				SubmitFailiureLabel.setText("Sorry we do not offer a pipe with the criteria you have selected");
 			} else {
@@ -278,29 +322,28 @@ public class newPipeForm extends javax.swing.JFrame {
 				float Diameter = Float.parseFloat(DiameterTextField.getText());
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
-//				PipeTypeI TestPipe = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();
 				switch (pipeToCreate) {
 					case 1:
-						System.out.println("TYPE1");
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						BasketTableModel.addRow(pipe1.getPipeData());
 						break;
 					case 2:
-						System.out.println("TYPE2");
 						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-						BasketTextBox.setText(BasketTextBox.getText() + pipe2.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//						BasketTextBox.setText(BasketTextBox.getText() + pipe2.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						break;
 					case 3:
 						PipeTypeIII pipe3 = new PipeTypeIII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-						BasketTextBox.setText(BasketTextBox.getText() + pipe3.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//						BasketTextBox.setText(BasketTextBox.getText() + pipe3.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						break;
 					case 4:
 						PipeTypeIV pipe4 = new PipeTypeIV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-						BasketTextBox.setText(BasketTextBox.getText() + pipe4.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//						BasketTextBox.setText(BasketTextBox.getText() + pipe4.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						break;
 					case 5:
 						PipeTypeV pipe5 = new PipeTypeV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-						BasketTextBox.setText(BasketTextBox.getText() + pipe5.getPipeData() + "\n");//Putting the newly created pipe in the basket
+//						BasketTextBox.setText(BasketTextBox.getText() + pipe5.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						break;
 
 				}
@@ -427,7 +470,7 @@ public class newPipeForm extends javax.swing.JFrame {
 	}
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JTextArea BasketTextBox;
+        private javax.swing.JTable BasketTable;
         private javax.swing.JLabel BasketTextBoxLabel;
         private javax.swing.JCheckBox ChemicalResistanceCheckBox;
         private javax.swing.JComboBox<String> ColoursComboBox;
@@ -447,6 +490,8 @@ public class newPipeForm extends javax.swing.JFrame {
         private javax.swing.JCheckBox ReinforcementCheckBox;
         private javax.swing.JButton SubmitButton;
         private javax.swing.JLabel SubmitFailiureLabel;
-        private javax.swing.JScrollPane jScrollPane1;
+        private javax.swing.JScrollPane jScrollPane2;
+        private javax.swing.JScrollPane jScrollPane3;
+        private javax.swing.JTable jTable1;
         // End of variables declaration//GEN-END:variables
 }
