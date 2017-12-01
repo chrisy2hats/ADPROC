@@ -12,11 +12,14 @@ package adproc_coursework;
 public class TextBoxValidatorMethods {
 
 	public static boolean isValidInt(String input) {
-		if (input.equals("0")) {
-			return false;
-		}
+//		if (input.equals("0")) {
+//			return false;
+//		}
 		try {
 			Integer.parseInt(input);
+			if (Integer.parseInt(input)<=0){
+				return false;
+			}
 
 		} catch (NumberFormatException e) {
 			return false;
@@ -30,6 +33,9 @@ public class TextBoxValidatorMethods {
 		}
 		try {
 			Float.parseFloat(input);
+			if (Integer.parseInt(input)<=0){
+				return false;
+			}
 
 		} catch (NumberFormatException e) {
 			return false;
