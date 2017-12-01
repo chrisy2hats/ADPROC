@@ -5,7 +5,6 @@ TODO List:
 Required:
 Round to two decimal places isn't working on very large values. To test add many pipes to the basket and see if the total stays at 2 decimal places
 
-Delete pipe button. Remember to remove it from price
 
 The total is currently rounded to two decimal places. This could result in the incorrect value after multiple pipes are added
 

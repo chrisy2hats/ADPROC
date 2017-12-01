@@ -64,6 +64,7 @@ public class newPipeForm extends javax.swing.JFrame {
                 TotalDisplayLabel = new javax.swing.JLabel();
                 DeletePipeButton = new javax.swing.JButton();
                 DeleteButtonErrorReportingLabel = new javax.swing.JLabel();
+                EmptyBasketButton = new javax.swing.JButton();
 
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -200,6 +201,13 @@ public class newPipeForm extends javax.swing.JFrame {
 
                 DeleteButtonErrorReportingLabel.setText("DeletePipeErrorReportingLabel");
 
+                EmptyBasketButton.setText("Empty Basket");
+                EmptyBasketButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                EmptyBasketButtonActionPerformed(evt);
+                        }
+                });
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -250,7 +258,9 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                 .addComponent(SubmitButton)))
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(251, 251, 251)
+                                .addGap(120, 120, 120)
+                                .addComponent(EmptyBasketButton)
+                                .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -316,8 +326,13 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                 .addComponent(BasketTextBoxLabel)))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(36, 36, 36)
-                                                .addComponent(TotalNameLabel))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(36, 36, 36)
+                                                                .addComponent(TotalNameLabel))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(EmptyBasketButton))))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(DeletePipeButton)))
@@ -333,6 +348,7 @@ public class newPipeForm extends javax.swing.JFrame {
 
         private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
 
+		DeleteButtonErrorReportingLabel.setText(" "); //Stops pipe deletion error message staying around too long
 		//If there are no reported errors with the users input
 		if ((!LengthErrorReportingLabel.getText().equals("")) || (!DiameterErrorReportingLabel.getText().equals("")) || (!QuantityErrorReportingLabel.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Please fix errors with input first");
@@ -401,8 +417,15 @@ public class newPipeForm extends javax.swing.JFrame {
 	}
 
 	private void addToTotal(double amount) {
-		TotalDisplayLabel.setText(Double.toString(Double.parseDouble(TotalDisplayLabel.getText()) + amount));
+		//A negative number can be passed
+		String currentContents = TotalDisplayLabel.getText();
+		String newContents = Double.toString(Double.parseDouble(currentContents) + amount) ;
+			if (Double.parseDouble(newContents)<=0){
+				newContents = "0";
+			}
+			TotalDisplayLabel.setText(newContents);
 	}
+//		TotalDisplayLabel.setText(Double.toString(Double.parseDouble(TotalDisplayLabel.getText()) + amount));
 
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
 		if (grade <= 3 && grade > 0 && colour == 0 && insulation == false && reinforcement == false) {
@@ -476,14 +499,28 @@ public class newPipeForm extends javax.swing.JFrame {
 
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
 		try{
-//		BasketTable.remove(BasketTable.getSelectedRow());
-			((DefaultTableModel) BasketTable.getModel()).removeRow(BasketTable.getSelectedRow());
+			int currentlySelectedRow =  BasketTable.getSelectedRow();
+			String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow,7));
+			double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£","")); //Remove formatting text for the price column. "Price: £123" -> 123
+			addToTotal(-valueToSubtract);
+			
+			((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
 			DeleteButtonErrorReportingLabel.setText("");
+			//Subtracting the price of the deleted pipe from the total
+
 		}catch (ArrayIndexOutOfBoundsException e) {
 			DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
 			//Set label 
 		}
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
+
+        private void EmptyBasketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmptyBasketButtonActionPerformed
+                // TODO add your handling code here:
+			((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
+			addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£","")));
+
+
+        }//GEN-LAST:event_EmptyBasketButtonActionPerformed
 	/**
 	 * @param args the command line arguments
 	 */
@@ -538,6 +575,7 @@ public class newPipeForm extends javax.swing.JFrame {
         private javax.swing.JLabel DiameterErrorReportingLabel;
         private javax.swing.JLabel DiameterLabel;
         private javax.swing.JTextField DiameterTextField;
+        private javax.swing.JButton EmptyBasketButton;
         private javax.swing.JComboBox<String> GradeComboBox;
         private javax.swing.JLabel GradeLabel;
         private javax.swing.JCheckBox InsulationCheckBox;
