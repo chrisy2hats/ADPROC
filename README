@@ -5,8 +5,7 @@ TODO List:
 Required:
 Make all pipes create pipes to put in basket not just type 1
 
-Rearrange hierarchy - 1,2 and 3 inherit from LongPipe and 4 and 5 inherit from 3
-
+Move methods around to utilise the multi level hierarchy(4 and 5 inherit from 3)
 
 Also search code for "TODO" in comments
 

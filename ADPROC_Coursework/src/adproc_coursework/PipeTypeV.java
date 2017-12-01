@@ -9,7 +9,7 @@ package adproc_coursework;
  *
  * @author Harry
  */
-public class PipeTypeV extends LongPipe {
+public class PipeTypeV extends PipeTypeIII {
     
     public PipeTypeV(int newGrade ,float newLength, float newDiameter, int newNumColour, int newNumOfPipes, boolean newChemicalResist, boolean newInsulation, boolean newReinforcement) {
         super(newGrade ,newLength, newDiameter, newNumColour, newNumOfPipes, newChemicalResist, newInsulation, newReinforcement);
