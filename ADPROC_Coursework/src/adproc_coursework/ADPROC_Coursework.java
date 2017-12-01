@@ -5,26 +5,14 @@
  */
 package adproc_coursework;
 
-import java.util.ArrayList;
-
-/**
- *
- *
- */
 public class ADPROC_Coursework {
 
 	/**
 	 * @param args the command line arguments
 	 */
-	public ArrayList<LongPipe> ListOfOrderedPipes = new ArrayList();
-
 	public static void main(String[] args) {
 		// TODO code application logic here
 		newPipeForm test = new newPipeForm();
 		test.main();
-	}
-
-	public void addPipeToList(LongPipe newPipe) {
-		ListOfOrderedPipes.add(newPipe);
 	}
 }

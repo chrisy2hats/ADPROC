@@ -23,6 +23,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		DiameterErrorReportingLabel.setText(" ");
 		QuantityErrorReportingLabel.setText(" ");
 		LengthErrorReportingLabel.setText(" ");
+		DeleteButtonErrorReportingLabel.setText(" ");
 		//Initialising value of TotalDisplayLabel allows for the value of new pipe to be added too it
 		TotalDisplayLabel.setText("0");
 	}
@@ -62,6 +63,7 @@ public class newPipeForm extends javax.swing.JFrame {
                 TotalNameLabel = new javax.swing.JLabel();
                 TotalDisplayLabel = new javax.swing.JLabel();
                 DeletePipeButton = new javax.swing.JButton();
+                DeleteButtonErrorReportingLabel = new javax.swing.JLabel();
 
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -87,11 +89,6 @@ public class newPipeForm extends javax.swing.JFrame {
                 DiameterTextField.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 DiameterTextFieldMouseClicked(evt);
-                        }
-                });
-                DiameterTextField.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                DiameterTextFieldActionPerformed(evt);
                         }
                 });
                 DiameterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -201,6 +198,8 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                 });
 
+                DeleteButtonErrorReportingLabel.setText("DeletePipeErrorReportingLabel");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -251,16 +250,20 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                 .addComponent(SubmitButton)))
                                                 .addContainerGap())))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(251, 251, 251)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addContainerGap(643, Short.MAX_VALUE)
+                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(TotalDisplayLabel))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(251, 251, 251)
                                                 .addComponent(DeletePipeButton)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(TotalNameLabel)))
                                 .addGap(30, 30, 30))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(203, 203, 203)
+                                .addComponent(DeleteButtonErrorReportingLabel)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +323,9 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addComponent(DeletePipeButton)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TotalDisplayLabel)
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DeleteButtonErrorReportingLabel)
+                                .addContainerGap())
                 );
 
                 pack();
@@ -469,12 +474,15 @@ public class newPipeForm extends javax.swing.JFrame {
 		}
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 
-        private void DiameterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiameterTextFieldActionPerformed
-		// TODO add your handling code here:
-        }//GEN-LAST:event_DiameterTextFieldActionPerformed
-
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
-                // TODO add your handling code here:
+		try{
+//		BasketTable.remove(BasketTable.getSelectedRow());
+			((DefaultTableModel) BasketTable.getModel()).removeRow(BasketTable.getSelectedRow());
+			DeleteButtonErrorReportingLabel.setText("");
+		}catch (ArrayIndexOutOfBoundsException e) {
+			DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
+			//Set label 
+		}
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
 	/**
 	 * @param args the command line arguments
@@ -525,6 +533,7 @@ public class newPipeForm extends javax.swing.JFrame {
         private javax.swing.JCheckBox ChemicalResistanceCheckBox;
         private javax.swing.JComboBox<String> ColoursComboBox;
         private javax.swing.JLabel ColoursLabel;
+        private javax.swing.JLabel DeleteButtonErrorReportingLabel;
         private javax.swing.JButton DeletePipeButton;
         private javax.swing.JLabel DiameterErrorReportingLabel;
         private javax.swing.JLabel DiameterLabel;
