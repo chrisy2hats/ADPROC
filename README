@@ -9,8 +9,6 @@ Delete pipe button. Remember to remove it from price
 
 The total is currently rounded to two decimal places. This could result in the incorrect value after multiple pipes are added
 
-Deny negative inputs in all three text fields. These are currently allowed
-
 Clear text field and reset drop down boxes upon successfully creating a pipe
 
 Also search code for "TODO" in comments
