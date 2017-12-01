@@ -409,6 +409,7 @@ public class newPipeForm extends javax.swing.JFrame {
 						break;
 
 				}
+				resetInputs();
 				//Adding the price of the new pipe to the total price
 				//Might be possible to see an append method look at TextBox.add
 				//TODO now clear the form interface of input
@@ -416,14 +417,30 @@ public class newPipeForm extends javax.swing.JFrame {
 		}
 	}
 
+	private void resetInputs() {
+		//Resetting text boxes
+		DiameterTextField.setText("Enter Diameter");
+		LengthTextField.setText("Enter Length");
+		QuantityTextField.setText("Quantity Wanted");
+		//Resetting comboboxes
+		GradeComboBox.setSelectedIndex(0);
+		ColoursComboBox.setSelectedIndex(0);
+		//Reseting radio buttons
+		InsulationCheckBox.setSelected(false);
+		ReinforcementCheckBox.setSelected(false);
+		ChemicalResistanceCheckBox.setSelected(false);
+
+	}
+
 	private void addToTotal(double amount) {
 		//A negative number can be passed
 		String currentContents = TotalDisplayLabel.getText();
-		String newContents = Double.toString(Double.parseDouble(currentContents) + amount) ;
-			if (Double.parseDouble(newContents)<=0){
-				newContents = "0";
-			}
-			TotalDisplayLabel.setText(newContents);
+		String newContents = Double.toString(Double.parseDouble(currentContents) + amount);
+		//Avoiding a tiny negative number being occasionally shown when all pipes removed
+		if (Double.parseDouble(newContents) <= 0) {
+			newContents = "0";
+		}
+		TotalDisplayLabel.setText(newContents);
 	}
 //		TotalDisplayLabel.setText(Double.toString(Double.parseDouble(TotalDisplayLabel.getText()) + amount));
 
@@ -498,26 +515,26 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
-		try{
-			int currentlySelectedRow =  BasketTable.getSelectedRow();
-			String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow,7));
-			double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£","")); //Remove formatting text for the price column. "Price: £123" -> 123
+		try {
+			int currentlySelectedRow = BasketTable.getSelectedRow();
+			String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
+			double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£", "")); //Remove formatting text for the price column. "Price: £123" -> 123
 			addToTotal(-valueToSubtract);
-			
+
 			((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
 			DeleteButtonErrorReportingLabel.setText("");
 			//Subtracting the price of the deleted pipe from the total
 
-		}catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
 			//Set label 
 		}
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
 
         private void EmptyBasketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmptyBasketButtonActionPerformed
-                // TODO add your handling code here:
-			((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
-			addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£","")));
+		// TODO add your handling code here:
+		((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
+		addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£", "")));
 
 
         }//GEN-LAST:event_EmptyBasketButtonActionPerformed
