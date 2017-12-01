@@ -98,7 +98,7 @@ public abstract class LongPipe {
 		double price = priceOfGradePlastic(this.grade); //Price of the grade of plastic being used
 		double costOfPipe = this.cost(volume, price, this.chemicalResist);
 		String pipeQuantity = String.valueOf(this.numOfPipes);
-		double finalPrice = Math.round( costOfPipe * this.numOfPipes* 100.0)/100.0;
+		double finalPrice = ( costOfPipe * this.numOfPipes);
 		return new String[]{("Grade Of Plastic: "+pipeGrade),("Length of pipe: "+pipeLength),("Diameter of pipe: "+pipeDiameter),("Number of colours: "+pipeColour),insulation,reinforcement,("Quantity: "+pipeQuantity),""+finalPrice};
 	}
 

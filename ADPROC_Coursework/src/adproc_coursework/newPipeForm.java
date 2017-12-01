@@ -5,6 +5,7 @@
  */
 package adproc_coursework;
 
+import java.text.DecimalFormat;
 import javax.swing.table.*;
 
 /**
@@ -326,16 +327,13 @@ public class newPipeForm extends javax.swing.JFrame {
                                                                 .addComponent(BasketTextBoxLabel)))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(36, 36, 36)
-                                                                .addComponent(TotalNameLabel))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(EmptyBasketButton))))
+                                                .addGap(36, 36, 36)
+                                                .addComponent(TotalNameLabel))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(DeletePipeButton)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(DeletePipeButton)
+                                                        .addComponent(EmptyBasketButton))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TotalDisplayLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -385,34 +383,31 @@ public class newPipeForm extends javax.swing.JFrame {
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 //						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						String[] pipeData = pipe1.getPipeData();
-						double price = Double.parseDouble(pipeData[7]);
+						double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
 						System.out.println("price" + price);
-						pipeData[7] = "Price: £" + pipeData[7];
+						pipeData[7] = "Price: £" + (price);
 						BasketTableModel.addRow(pipeData);
 						addToTotal(price);
 						break;
 					case 2:
 						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-//						BasketTextBox.setText(BasketTextBox.getText() + pipe2.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						//TODO code like in pipe 1 here
 						break;
 					case 3:
 						PipeTypeIII pipe3 = new PipeTypeIII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-//						BasketTextBox.setText(BasketTextBox.getText() + pipe3.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						//TODO code like in pipe 1 here
 						break;
 					case 4:
 						PipeTypeIV pipe4 = new PipeTypeIV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-//						BasketTextBox.setText(BasketTextBox.getText() + pipe4.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						//TODO code like in pipe 1 here
 						break;
 					case 5:
 						PipeTypeV pipe5 = new PipeTypeV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-//						BasketTextBox.setText(BasketTextBox.getText() + pipe5.getPipeData() + "\n");//Putting the newly created pipe in the basket
+						//TODO code like in pipe 1 here
 						break;
 
 				}
-				resetInputs();
-				//Adding the price of the new pipe to the total price
-				//Might be possible to see an append method look at TextBox.add
-				//TODO now clear the form interface of input
+				resetInputs(); //Sets all the input fields back to how they are at the start of the program
 			}
 		}
 	}
@@ -433,16 +428,21 @@ public class newPipeForm extends javax.swing.JFrame {
 	}
 
 	private void addToTotal(double amount) {
-		//A negative number can be passed
+		//A negative number can be passed  
 		String currentContents = TotalDisplayLabel.getText();
-		String newContents = Double.toString(Double.parseDouble(currentContents) + amount);
+		String newContents = Double.toString(roundToTwoPlaces(Double.parseDouble(currentContents) + amount));
+
+
 		//Avoiding a tiny negative number being occasionally shown when all pipes removed
 		if (Double.parseDouble(newContents) <= 0) {
 			newContents = "0";
 		}
 		TotalDisplayLabel.setText(newContents);
 	}
-//		TotalDisplayLabel.setText(Double.toString(Double.parseDouble(TotalDisplayLabel.getText()) + amount));
+	private double roundToTwoPlaces(double number){
+		DecimalFormat rounder = new DecimalFormat("#.##");
+		return Double.valueOf(rounder.format(number)); //TODO Is this allowed?
+	}
 
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
 		if (grade <= 3 && grade > 0 && colour == 0 && insulation == false && reinforcement == false) {
@@ -515,6 +515,7 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
+		SubmitFailiureLabel.setText("");//Removing residual messages
 		try {
 			int currentlySelectedRow = BasketTable.getSelectedRow();
 			String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
@@ -526,13 +527,13 @@ public class newPipeForm extends javax.swing.JFrame {
 			//Subtracting the price of the deleted pipe from the total
 
 		} catch (ArrayIndexOutOfBoundsException e) {
+			//If no pipe is selected the index value will be -1
 			DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
-			//Set label 
 		}
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
 
         private void EmptyBasketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmptyBasketButtonActionPerformed
-		// TODO add your handling code here:
+		SubmitFailiureLabel.setText("");//Removing residual messages
 		((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
 		addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£", "")));
 

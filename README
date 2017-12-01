@@ -3,16 +3,20 @@ Repo for ADPROC Coursework
 
 TODO List:
 Required:
-Round to two decimal places isn't working on very large values. To test add many pipes to the basket and see if the total stays at 2 decimal places
-
-
-The total is currently rounded to two decimal places. This could result in the incorrect value after multiple pipes are added
-
-Also search code for "TODO" in comments
+Make all pipes create pipes to put in basket not just type 1
 
 Rearrange hierarchy - 1,2 and 3 inherit from LongPipe and 4 and 5 inherit from 3
 
 
+Also search code for "TODO" in comments
+
+Potential issues:
+The total is currently rounded to two decimal places. This could result in the incorrect value after multiple pipes are added
+
+Is the current method of rounding numbers allowed? 
+
+
 Extension(May get us extra marks)
+Are you sure on delete pipe and empty basket buttons
 Make FormValidatorMethods use regex not try catch
 Make pipes that are identical merge into one whilst adding their quantity
