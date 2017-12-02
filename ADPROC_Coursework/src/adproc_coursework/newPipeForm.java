@@ -361,9 +361,9 @@ public class newPipeForm extends javax.swing.JFrame {
 		//If there are no reported errors with the users input
 		if ((!LengthErrorReportingLabel.getText().equals("")) || (!DiameterErrorReportingLabel.getText().equals("")) || (!QuantityErrorReportingLabel.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Please fix errors with input first");
-		}else if ((DiameterTextField.getText().equals("Enter Diameter"))||(LengthTextField.getText().equals("Enter Length"))||(QuantityTextField.getText().equals("Quantity Wanted"))){
+		} else if ((DiameterTextField.getText().equals("Enter Diameter")) || (LengthTextField.getText().equals("Enter Length")) || (QuantityTextField.getText().equals("Quantity Wanted"))) {
 			SubmitFailiureLabel.setText("New pipe not created.Please enter into every field first");
-				
+
 			//If they have entered input in all of the text fields
 		} else if ((LengthTextField.getText().equals("")) || (DiameterTextField.getText().equals("")) || (QuantityTextField.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Requireed input is missing");
@@ -414,8 +414,50 @@ public class newPipeForm extends javax.swing.JFrame {
 
 				}
 				resetInputs(); //Sets all the input fields back to how they are at the start of the program
+				detectSimilarPipes();
 			}
 		}
+	}
+
+	private void detectSimilarPipes() {
+		/*
+		Go down grade. if the same check the other columns to see if they are the same.If they are then add the quantity of the pipes recalculate price and remove the duplicate row
+		 */
+		DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
+		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
+
+		if (numberOfRows != 1) {
+			for (int i = 1; i <= (numberOfRows-1); i++) { //i starts at 1 as the newly added pipe shouldn't be checked against itself
+				//I is the current row
+				for (int j = 0; j <= 5; j++) {
+					String currentCellValue = (String) BasketTableModel.getValueAt(i, j);
+					String expectedCellValue = (String) BasketTableModel.getValueAt(0, j);
+					if (!currentCellValue.equals(expectedCellValue)) {
+						//If the value isnt the same then skip checking the rest of the row
+						break;
+					}
+					if (j == 5) {//If the loop gets to reinforcement and hasnt broken the pipes are identical on all but quantity and price
+						combineRows(i, BasketTableModel);
+					}
+				}
+			}
+		}
+	}
+
+	private void combineRows(int rowToCombine, DefaultTableModel BasketTableModel) {
+		//It is assumed the row 0 and the other row are being combined. Row 0 is the most recently created row
+		System.out.println("combineRows called with:" + rowToCombine);
+		//Need to get their quantities and prices and add them together
+		double zeroPrice = Double.parseDouble(((String) (BasketTableModel.getValueAt(0, 7))).substring(8));//"Price: £1" -> "1". Remove first 8 chars
+		int zeroQuantity = Integer.parseInt(((String) (BasketTableModel.getValueAt(0, 6))).substring(10)); //"Quantity: 5" -> "5" remove first 10 chars
+		double rowToCombinePrice = Double.parseDouble(((String) (BasketTableModel.getValueAt(rowToCombine, 7))).substring(8));//"Price: £1" -> "1". Remove first 8 chars
+		int rowToCombineQuantity = Integer.parseInt(((String) (BasketTableModel.getValueAt(rowToCombine, 6))).substring(10)); //"Quantity: 5" -> "5" remove first 10 chars
+		double newRowPrice = (rowToCombinePrice + zeroPrice);
+		int newRowQuantity = (rowToCombineQuantity + zeroQuantity);
+		BasketTableModel.setValueAt(("Quantity: " + newRowQuantity), 0, 6);
+		BasketTableModel.setValueAt(("Price: £" + newRowPrice), 0, 7);
+
+		((DefaultTableModel) BasketTable.getModel()).removeRow(rowToCombine);
 	}
 
 	private void addPipeToBasket(LongPipe pipe) {
@@ -557,27 +599,27 @@ public class newPipeForm extends javax.swing.JFrame {
 
 		int currentlySelectedRow = BasketTable.getSelectedRow();
 		if ((numberOfRows != 0)) {
-			if (currentlySelectedRow == -1){
-					DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
-			}else{
-			int dialogButton = JOptionPane.YES_NO_OPTION;
-			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
-			DeleteButtonErrorReportingLabel.setText("");
-			if (dialogResult == JOptionPane.YES_OPTION) {
+			if (currentlySelectedRow == -1) {
+				DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
+			} else {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
+				DeleteButtonErrorReportingLabel.setText("");
+				if (dialogResult == JOptionPane.YES_OPTION) {
 
-				try {
-					String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
-					double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£", "")); //Remove formatting text for the price column. "Price: £123" -> 123
-					addToTotal(-valueToSubtract);
+					try {
+						String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
+						double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£", "")); //Remove formatting text for the price column. "Price: £123" -> 123
+						addToTotal(-valueToSubtract);
 
-					((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
-					DeleteButtonErrorReportingLabel.setText("");
-					//Subtracting the price of the deleted pipe from the total
+						((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
+						DeleteButtonErrorReportingLabel.setText("");
+						//Subtracting the price of the deleted pipe from the total
 
-				} catch (ArrayIndexOutOfBoundsException e) {
-					//If no pipe is selected the index value will be -1
+					} catch (ArrayIndexOutOfBoundsException e) {
+						//If no pipe is selected the index value will be -1
+					}
 				}
-			}
 			}
 		}
 
