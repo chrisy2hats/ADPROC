@@ -6,6 +6,7 @@
 package adproc_coursework;
 
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.*;
 
 /**
@@ -211,6 +212,11 @@ public class newPipeForm extends javax.swing.JFrame {
                 });
 
                 CheckoutButton.setText("Checkout");
+                CheckoutButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                CheckoutButtonActionPerformed(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -382,7 +388,6 @@ public class newPipeForm extends javax.swing.JFrame {
 				float Diameter = Float.parseFloat(DiameterTextField.getText());
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
-//				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
 				switch (pipeToCreate) {
 					case 1:
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
@@ -391,22 +396,18 @@ public class newPipeForm extends javax.swing.JFrame {
 					case 2:
 						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 						addPipeToBasket(pipe2);
-						//TODO code like in pipe 1 here
 						break;
 					case 3:
 						PipeTypeIII pipe3 = new PipeTypeIII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 						addPipeToBasket(pipe3);
-						//TODO code like in pipe 1 here
 						break;
 					case 4:
 						PipeTypeIV pipe4 = new PipeTypeIV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 						addPipeToBasket(pipe4);
-						//TODO code like in pipe 1 here
 						break;
 					case 5:
 						PipeTypeV pipe5 = new PipeTypeV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 						addPipeToBasket(pipe5);
-						//TODO code like in pipe 1 here
 						break;
 
 				}
@@ -414,14 +415,15 @@ public class newPipeForm extends javax.swing.JFrame {
 			}
 		}
 	}
-	private void addPipeToBasket(LongPipe pipe){
-				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
-						String[] pipeData = pipe.getPipeData();
-						double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
-						pipeData[7] = "Price: £" + (price);
-						BasketTableModel.addRow(pipeData);
-						addToTotal(price);
-		
+
+	private void addPipeToBasket(LongPipe pipe) {
+		DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
+		String[] pipeData = pipe.getPipeData();
+		double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
+		pipeData[7] = "Price: £" + (price);
+		BasketTableModel.addRow(pipeData);
+		addToTotal(price);
+
 	}
 
 	private void resetInputs() {
@@ -501,7 +503,7 @@ public class newPipeForm extends javax.swing.JFrame {
 			LengthErrorReportingLabel.setText("Invalid input in length");
 		} else {
 			float currentLength = Float.parseFloat(LengthTextField.getText());
-			if (currentLength  > 6) {
+			if (currentLength > 6) {
 				LengthErrorReportingLabel.setText("Length cannot be more than 6");
 			} else if (currentLength < 0.5) {
 				LengthErrorReportingLabel.setText("Length cannot be less than 0.5m");
@@ -520,12 +522,13 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
 		else {
 			float currentDiameter = Float.parseFloat(DiameterTextField.getText());
-			if (currentDiameter>236)//more than 6m long(236)
+			if (currentDiameter > 236)//more than 6m long(236)
+			{
 				DiameterErrorReportingLabel.setText("We do not offer pipes more than 236 inches(6m) in diameter");
-			else if (currentDiameter<0.5){ //Less than 0.5 inches
+			} else if (currentDiameter < 0.5) { //Less than 0.5 inches
 				DiameterErrorReportingLabel.setText("We do not offer pipes less than 0.5 inches in diameter");
-			}else{
-		DiameterErrorReportingLabel.setText("");
+			} else {
+				DiameterErrorReportingLabel.setText("");
 			}
 		}
 	}
@@ -571,6 +574,16 @@ public class newPipeForm extends javax.swing.JFrame {
 
 
         }//GEN-LAST:event_EmptyBasketButtonActionPerformed
+
+        private void CheckoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutButtonActionPerformed
+		// TODO add your handling code here:
+		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
+		if (numberOfRows == 0) {
+			JOptionPane.showMessageDialog(null, "Order not placed.Please create a pipe before clicking checkout", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Order placed! Thank you for your business.", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
+		}
+        }//GEN-LAST:event_CheckoutButtonActionPerformed
 	/**
 	 * @param args the command line arguments
 	 */
