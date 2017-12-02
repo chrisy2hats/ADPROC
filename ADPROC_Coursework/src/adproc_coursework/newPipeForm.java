@@ -551,29 +551,43 @@ public class newPipeForm extends javax.swing.JFrame {
 
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
 		SubmitFailiureLabel.setText("");//Removing residual messages
-		try {
-			int currentlySelectedRow = BasketTable.getSelectedRow();
-			String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
-			double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£", "")); //Remove formatting text for the price column. "Price: £123" -> 123
-			addToTotal(-valueToSubtract);
+		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
+		if (numberOfRows != 0) {
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
+			if (dialogResult == JOptionPane.YES_OPTION) {
 
-			((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
-			DeleteButtonErrorReportingLabel.setText("");
-			//Subtracting the price of the deleted pipe from the total
+				try {
+					int currentlySelectedRow = BasketTable.getSelectedRow();
+					String contentsOfPriceColumn = (String) (BasketTable.getModel().getValueAt(currentlySelectedRow, 7));
+					double valueToSubtract = Double.parseDouble(contentsOfPriceColumn.replaceAll(".*£", "")); //Remove formatting text for the price column. "Price: £123" -> 123
+					addToTotal(-valueToSubtract);
 
-		} catch (ArrayIndexOutOfBoundsException e) {
-			//If no pipe is selected the index value will be -1
-			DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
+					((DefaultTableModel) BasketTable.getModel()).removeRow(currentlySelectedRow);
+					DeleteButtonErrorReportingLabel.setText("");
+					//Subtracting the price of the deleted pipe from the total
+
+				} catch (ArrayIndexOutOfBoundsException e) {
+					//If no pipe is selected the index value will be -1
+					DeleteButtonErrorReportingLabel.setText("No pipe deleted.Have you selected one?");
+				}
+			}
 		}
+
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
 
         private void EmptyBasketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmptyBasketButtonActionPerformed
-		SubmitFailiureLabel.setText("");//Removing residual messages
-		((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
-		addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£", "")));
-
-
+		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
+		if (numberOfRows != 0) {
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
+			if (dialogResult == JOptionPane.YES_OPTION) {
+				SubmitFailiureLabel.setText("");//Removing residual messages
+				((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
+				addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£", "")));
+			}
         }//GEN-LAST:event_EmptyBasketButtonActionPerformed
+	}
 
         private void CheckoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckoutButtonActionPerformed
 		// TODO add your handling code here:
@@ -582,6 +596,7 @@ public class newPipeForm extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, "Order not placed.Please create a pipe before clicking checkout", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Order placed! Thank you for your business.", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
+			((DefaultTableModel) BasketTable.getModel()).setRowCount(0);//Removing the ordered pipes from the basket
 		}
         }//GEN-LAST:event_CheckoutButtonActionPerformed
 	/**
