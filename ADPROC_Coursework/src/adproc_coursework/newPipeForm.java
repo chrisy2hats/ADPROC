@@ -361,7 +361,9 @@ public class newPipeForm extends javax.swing.JFrame {
 		//If there are no reported errors with the users input
 		if ((!LengthErrorReportingLabel.getText().equals("")) || (!DiameterErrorReportingLabel.getText().equals("")) || (!QuantityErrorReportingLabel.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Please fix errors with input first");
-
+		}else if ((DiameterTextField.getText().equals("Enter Diameter"))||(LengthTextField.getText().equals("Enter Length"))||(QuantityTextField.getText().equals("Quantity Wanted"))){
+			SubmitFailiureLabel.setText("New pipe not created.Please enter into every field first");
+				
 			//If they have entered input in all of the text fields
 		} else if ((LengthTextField.getText().equals("")) || (DiameterTextField.getText().equals("")) || (QuantityTextField.getText().equals(""))) {
 			SubmitFailiureLabel.setText("New pipe not created.Requireed input is missing");
