@@ -377,14 +377,13 @@ public class newPipeForm extends javax.swing.JFrame {
 				float Diameter = Float.parseFloat(DiameterTextField.getText());
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
-				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();
+				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
 				switch (pipeToCreate) {
 					case 1:
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
 //						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
 						String[] pipeData = pipe1.getPipeData();
 						double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
-						System.out.println("price" + price);
 						pipeData[7] = "Price: £" + (price);
 						BasketTableModel.addRow(pipeData);
 						addToTotal(price);
@@ -432,14 +431,14 @@ public class newPipeForm extends javax.swing.JFrame {
 		String currentContents = TotalDisplayLabel.getText();
 		String newContents = Double.toString(roundToTwoPlaces(Double.parseDouble(currentContents) + amount));
 
-
 		//Avoiding a tiny negative number being occasionally shown when all pipes removed
 		if (Double.parseDouble(newContents) <= 0) {
 			newContents = "0";
 		}
 		TotalDisplayLabel.setText(newContents);
 	}
-	private double roundToTwoPlaces(double number){
+
+	private double roundToTwoPlaces(double number) {
 		DecimalFormat rounder = new DecimalFormat("#.##");
 		return Double.valueOf(rounder.format(number)); //TODO Is this allowed?
 	}
@@ -447,20 +446,21 @@ public class newPipeForm extends javax.swing.JFrame {
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
 		if (grade <= 3 && grade > 0 && colour == 0 && insulation == false && reinforcement == false) {
 			return 1;
+
 		} else if (grade <= 4 && grade > 1 && colour == 1 && insulation == false && reinforcement == false) {
-			//create a object of pipe II
 			return 2;
+
 		} else if (grade <= 5 && grade > 1 && colour == 2 && insulation == false && reinforcement == false) {
-			//create a object of pipe III
 			return 3;
+
 		} else if (grade <= 5 && grade > 1 && colour == 2 && insulation == true && reinforcement == false) {
-			//create a object of pipe IV
 			return 4;
+
 		} else if (grade <= 5 && grade > 2 && colour == 2 && insulation == true && reinforcement == true) {
-			//create a object of pipe V
 			return 5;
+
 		} else {
-			return 0;
+			return 0;//Indicates the current inputs cannot create a valid pipe
 		}
         }//GEN-LAST:event_SubmitButtonActionPerformed
 
@@ -486,31 +486,50 @@ public class newPipeForm extends javax.swing.JFrame {
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(LengthTextField.getText());
 		if (!(ValidInt || ValidFloat)) {
 			LengthErrorReportingLabel.setText("Invalid input in length");
-		} else if (Float.parseFloat(LengthTextField.getText()) <= 6) {
-			LengthErrorReportingLabel.setText("");
 		} else {
-			LengthErrorReportingLabel.setText("Length cannot be more than 6");
+			float currentLength = Float.parseFloat(LengthTextField.getText());
+			if (currentLength  > 6) {
+				LengthErrorReportingLabel.setText("Length cannot be more than 6");
+			} else if (currentLength < 0.5) {
+				LengthErrorReportingLabel.setText("Length cannot be less than 0.5m");
+			} else {
+				LengthErrorReportingLabel.setText("");
+			}
 		}
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
         private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
+		//Valid diameters are between 0.5 inch pipes and 236 inches(6m)
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(DiameterTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(DiameterTextField.getText());
 		if (!(ValidInt || ValidFloat)) {
 			DiameterErrorReportingLabel.setText("Invalid input in diameter");
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
 		else {
-			DiameterErrorReportingLabel.setText("");
+			float currentDiameter = Float.parseFloat(DiameterTextField.getText());
+			if (currentDiameter>6)//more than 6m long(236)
+				DiameterErrorReportingLabel.setText("We do not offer pipes more than 236 inches(6m) in diameter");
+			else if (currentDiameter<0.5){ //Less than 0.5 inches
+				DiameterErrorReportingLabel.setText("We do not offer pipes less than 0.5 inches in diameter");
+			}else{
+		DiameterErrorReportingLabel.setText("");
+			}
 		}
 	}
 
         private void QuantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantityTextFieldKeyReleased
 		//Only allow integers.You can't order 5.5 pipes
+		//Only allow 1 to 1000 pipes per order
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(QuantityTextField.getText());
 		if (!ValidInt) {
 			QuantityErrorReportingLabel.setText("Invalid input in quantity");
 		} else {
-			QuantityErrorReportingLabel.setText("");
+			int QuantityOrdered = Integer.parseInt(QuantityTextField.getText());
+			if (QuantityOrdered > 1000) {
+				QuantityErrorReportingLabel.setText("Sorry you cannot order over 1000 pipes.");
+			} else {
+				QuantityErrorReportingLabel.setText("");
+			}
 		}
         }//GEN-LAST:event_QuantityTextFieldKeyReleased
 

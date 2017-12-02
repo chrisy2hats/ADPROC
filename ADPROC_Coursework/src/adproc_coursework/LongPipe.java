@@ -47,27 +47,6 @@ public abstract class LongPipe {
 
 	public abstract double cost(double volume, double price, boolean ChemResist);
 
-	public double calculateExtra() {
-		double extra = 1;
-		if (numOfColour == 1) {
-			extra += 0.12;
-		}
-		if (numOfColour == 2) {
-			extra += 0.16;
-		}
-		if (insulation == true) {
-			extra += 0.13;
-		}
-		if (reinforcement == true) {
-			extra += 0.17;
-		}
-		if (chemicalResist == true) {
-			extra += 0.14;
-		}
-		return extra;
-
-	}
-
 
 	public String[] getPipeData() {
 		//Return a string displaying the pipes attributes to be put into the text box on the user interface

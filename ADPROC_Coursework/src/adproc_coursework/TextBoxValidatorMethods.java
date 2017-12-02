@@ -40,7 +40,6 @@ public class TextBoxValidatorMethods {
 		} catch (NumberFormatException e) {
 			return false;
 		}
-//			return true;
 	}
 
 }
