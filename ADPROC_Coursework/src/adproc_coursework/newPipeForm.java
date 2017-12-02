@@ -560,6 +560,7 @@ public class newPipeForm extends javax.swing.JFrame {
 			}else{
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
+			DeleteButtonErrorReportingLabel.setText("");
 			if (dialogResult == JOptionPane.YES_OPTION) {
 
 				try {
