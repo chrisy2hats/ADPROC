@@ -12,14 +12,11 @@ package adproc_coursework;
 public class TextBoxValidatorMethods {
 
 	public static boolean isValidInt(String input) {
-//		if (input.equals("0")) {
-//			return false;
-//		}
+		if (input.equals("0")) {
+			return false;
+		}
 		try {
 			Integer.parseInt(input);
-			if (Integer.parseInt(input)<=0){
-				return false;
-			}
 
 		} catch (NumberFormatException e) {
 			return false;
@@ -28,21 +25,19 @@ public class TextBoxValidatorMethods {
 	}
 
 	public static boolean isValidFloat(String input) {
+		//TODO check for ".3"
 		if (input.equals("0.0") || input.equals("0")) {
 			return false;
 		}
 		try {
 			Float.parseFloat(input);
-			if (Integer.parseInt(input)<=0){
-				return false;
-			}
-
-		} catch (NumberFormatException e) {
-			return false;
-		}
-		if (!input.substring(input.length() - 1).equals(".")) { //Makes any string ending in "." invalid e.g. "." or "5."
+		if ((!input.substring(input.length() - 1).equals("."))&&(!(input.charAt(0)=='.'))) { //Makes any string ending in "." invalid e.g. "." or "5."
 			return true;
 		} else {
+			return false;
+		}
+
+		} catch (NumberFormatException e) {
 			return false;
 		}
 //			return true;
