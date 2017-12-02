@@ -66,6 +66,7 @@ public class newPipeForm extends javax.swing.JFrame {
                 DeletePipeButton = new javax.swing.JButton();
                 DeleteButtonErrorReportingLabel = new javax.swing.JLabel();
                 EmptyBasketButton = new javax.swing.JButton();
+                CheckoutButton = new javax.swing.JButton();
 
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -209,6 +210,8 @@ public class newPipeForm extends javax.swing.JFrame {
                         }
                 });
 
+                CheckoutButton.setText("Checkout");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -262,14 +265,13 @@ public class newPipeForm extends javax.swing.JFrame {
                                 .addGap(120, 120, 120)
                                 .addComponent(EmptyBasketButton)
                                 .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(TotalDisplayLabel))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(DeletePipeButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(TotalNameLabel)))
+                                .addComponent(DeletePipeButton)
+                                .addGap(63, 63, 63)
+                                .addComponent(CheckoutButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TotalDisplayLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(TotalNameLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(30, 30, 30))
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(203, 203, 203)
@@ -312,7 +314,7 @@ public class newPipeForm extends javax.swing.JFrame {
                                         .addComponent(ChemicalResistanceCheckBox))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
@@ -331,11 +333,14 @@ public class newPipeForm extends javax.swing.JFrame {
                                                 .addComponent(TotalNameLabel))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(DeletePipeButton)
-                                                        .addComponent(EmptyBasketButton))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TotalDisplayLabel)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(DeletePipeButton)
+                                                                        .addComponent(EmptyBasketButton))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(TotalDisplayLabel))
+                                                        .addComponent(CheckoutButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(DeleteButtonErrorReportingLabel)
                                 .addContainerGap())
@@ -377,31 +382,30 @@ public class newPipeForm extends javax.swing.JFrame {
 				float Diameter = Float.parseFloat(DiameterTextField.getText());
 				int Quantity = Integer.parseInt(QuantityTextField.getText());
 				boolean ChemicalResistance = ChemicalResistanceCheckBox.isSelected();
-				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
+//				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
 				switch (pipeToCreate) {
 					case 1:
 						PipeTypeI pipe1 = new PipeTypeI(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
-//						BasketTextBox.setText(BasketTextBox.getText() + pipe1.getPipeData() + "\n");//Putting the newly created pipe in the basket
-						String[] pipeData = pipe1.getPipeData();
-						double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
-						pipeData[7] = "Price: £" + (price);
-						BasketTableModel.addRow(pipeData);
-						addToTotal(price);
+						addPipeToBasket(pipe1);
 						break;
 					case 2:
 						PipeTypeII pipe2 = new PipeTypeII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						addPipeToBasket(pipe2);
 						//TODO code like in pipe 1 here
 						break;
 					case 3:
 						PipeTypeIII pipe3 = new PipeTypeIII(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						addPipeToBasket(pipe3);
 						//TODO code like in pipe 1 here
 						break;
 					case 4:
 						PipeTypeIV pipe4 = new PipeTypeIV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						addPipeToBasket(pipe4);
 						//TODO code like in pipe 1 here
 						break;
 					case 5:
 						PipeTypeV pipe5 = new PipeTypeV(gradeSelected, Length, Diameter, colourSelected, Quantity, ChemicalResistance, insulationSelected, reinforcementSelected);
+						addPipeToBasket(pipe5);
 						//TODO code like in pipe 1 here
 						break;
 
@@ -409,6 +413,15 @@ public class newPipeForm extends javax.swing.JFrame {
 				resetInputs(); //Sets all the input fields back to how they are at the start of the program
 			}
 		}
+	}
+	private void addPipeToBasket(LongPipe pipe){
+				DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
+						String[] pipeData = pipe.getPipeData();
+						double price = (roundToTwoPlaces(Double.parseDouble(pipeData[7])));
+						pipeData[7] = "Price: £" + (price);
+						BasketTableModel.addRow(pipeData);
+						addToTotal(price);
+		
 	}
 
 	private void resetInputs() {
@@ -507,7 +520,7 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_DiameterTextFieldKeyReleased
 		else {
 			float currentDiameter = Float.parseFloat(DiameterTextField.getText());
-			if (currentDiameter>6)//more than 6m long(236)
+			if (currentDiameter>236)//more than 6m long(236)
 				DiameterErrorReportingLabel.setText("We do not offer pipes more than 236 inches(6m) in diameter");
 			else if (currentDiameter<0.5){ //Less than 0.5 inches
 				DiameterErrorReportingLabel.setText("We do not offer pipes less than 0.5 inches in diameter");
@@ -604,6 +617,7 @@ public class newPipeForm extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JTable BasketTable;
         private javax.swing.JLabel BasketTextBoxLabel;
+        private javax.swing.JButton CheckoutButton;
         private javax.swing.JCheckBox ChemicalResistanceCheckBox;
         private javax.swing.JComboBox<String> ColoursComboBox;
         private javax.swing.JLabel ColoursLabel;
