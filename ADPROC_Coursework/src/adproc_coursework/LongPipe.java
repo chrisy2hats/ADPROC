@@ -33,10 +33,8 @@ public abstract class LongPipe {
 		double radius = newDiameter / 2;
 		double innerRadius = radius * 0.9;
 		totalVolume = Math.PI * Math.pow(radius, 2) * convertMeterToInch(newLength);
-		System.out.println(totalVolume);
 		innerVolume = Math.PI * Math.pow(innerRadius, 2) * convertMeterToInch(newLength);
 		volume = totalVolume - innerVolume;
-		System.out.println(volume);
 		return volume;
 
 	}

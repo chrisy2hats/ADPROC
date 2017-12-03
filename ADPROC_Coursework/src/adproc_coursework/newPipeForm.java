@@ -5,6 +5,7 @@
  */
 package adproc_coursework;
 
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
@@ -539,6 +540,11 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_QuantityTextFieldMouseClicked
 
         private void LengthTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LengthTextFieldKeyReleased
+		//Allowing the user to press enter to in a text box to submit the form
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+			evt.consume();
+			SubmitButton.doClick();
+		}
 		//Checks if it is a valid int or float and is less than 6m long
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(LengthTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(LengthTextField.getText());
@@ -557,6 +563,11 @@ public class newPipeForm extends javax.swing.JFrame {
         }//GEN-LAST:event_LengthTextFieldKeyReleased
 
         private void DiameterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiameterTextFieldKeyReleased
+		//Allowing the user to press enter to in a text box to submit the form
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+			evt.consume();
+			SubmitButton.doClick();
+		}
 		//Valid diameters are between 0.5 inch pipes and 236 inches(6m)
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(DiameterTextField.getText());
 		Boolean ValidFloat = TextBoxValidatorMethods.isValidFloat(DiameterTextField.getText());
@@ -577,6 +588,11 @@ public class newPipeForm extends javax.swing.JFrame {
 	}
 
         private void QuantityTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantityTextFieldKeyReleased
+		//Allowing the user to press enter to in a text box to submit the form
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+			evt.consume();
+			SubmitButton.doClick();
+		}
 		//Only allow integers.You can't order 5.5 pipes
 		//Only allow 1 to 1000 pipes per order
 		Boolean ValidInt = TextBoxValidatorMethods.isValidInt(QuantityTextField.getText());
@@ -605,7 +621,6 @@ public class newPipeForm extends javax.swing.JFrame {
 				int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
 				if (dialogResult == JOptionPane.YES_OPTION) {
 
-					try {
 						int numberOfSelectedRows = BasketTable.getSelectedRowCount();
 						for (int i = 0; i < numberOfSelectedRows; i++) {
 							currentlySelectedRow = BasketTable.getSelectedRow();
@@ -618,9 +633,6 @@ public class newPipeForm extends javax.swing.JFrame {
 							//Subtracting the price of the deleted pipe from the total
 						}
 
-					} catch (ArrayIndexOutOfBoundsException e) {
-						//If no pipe is selected the index value will be -1
-					}
 				}
 			}
 		}
