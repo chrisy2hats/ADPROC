@@ -21,7 +21,7 @@ public class newPipeForm extends javax.swing.JFrame {
 	 */
 	public newPipeForm() {
 		initComponents();
-		//Makes the error labels invisible to the user at the start without having to deal with .setVisible
+		//Makes the error labels invisible to the user at the start without having to later run .setVisible
 		DiameterErrorReportingLabel.setText(" ");
 		QuantityErrorReportingLabel.setText(" ");
 		LengthErrorReportingLabel.setText(" ");
@@ -420,9 +420,7 @@ public class newPipeForm extends javax.swing.JFrame {
 	}
 
 	private void detectSimilarPipes() {
-		/*
-		Go down grade. if the same check the other columns to see if they are the same.If they are then add the quantity of the pipes recalculate price and remove the duplicate row
-		 */
+	//Checks if the pipe just added to the order is  identical to any already in the basket	
 		DefaultTableModel BasketTableModel = (DefaultTableModel) BasketTable.getModel();//Needs to be ran before rows can be added to the table
 		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
 
@@ -436,7 +434,7 @@ public class newPipeForm extends javax.swing.JFrame {
 						//If the value isnt the same then skip checking the rest of the row
 						break;
 					}
-					if (j == 5) {//If the loop gets to reinforcement and hasnt broken the pipes are identical on all but quantity and price
+					if (j == 5) {//If the loop gets to reinforcement and the loop hasnt been broken the pipes are identical on all but quantity and price
 						combineRows(i, BasketTableModel);
 					}
 				}
@@ -446,7 +444,6 @@ public class newPipeForm extends javax.swing.JFrame {
 
 	private void combineRows(int rowToCombine, DefaultTableModel BasketTableModel) {
 		//It is assumed the row 0 and the other row are being combined. Row 0 is the most recently created row
-		System.out.println("combineRows called with:" + rowToCombine);
 		//Need to get their quantities and prices and add them together
 		double zeroPrice = Double.parseDouble(((String) (BasketTableModel.getValueAt(0, 7))).substring(8));//"Price: £1" -> "1". Remove first 8 chars
 		int zeroQuantity = Integer.parseInt(((String) (BasketTableModel.getValueAt(0, 6))).substring(10)); //"Quantity: 5" -> "5" remove first 10 chars
@@ -475,7 +472,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		DiameterTextField.setText("Enter Diameter");
 		LengthTextField.setText("Enter Length");
 		QuantityTextField.setText("Quantity Wanted");
-		//Resetting comboboxes
+		//Resetting combo boxes
 		GradeComboBox.setSelectedIndex(0);
 		ColoursComboBox.setSelectedIndex(0);
 		//Reseting radio buttons
@@ -499,7 +496,7 @@ public class newPipeForm extends javax.swing.JFrame {
 
 	private double roundToTwoPlaces(double number) {
 		DecimalFormat rounder = new DecimalFormat("#.##");
-		return Double.valueOf(rounder.format(number)); //TODO Is this allowed?
+		return Double.valueOf(rounder.format(number)); 
 	}
 
 	private int choosePipe(int grade, int colour, boolean insulation, boolean reinforcement) { //TODO further test this logic
@@ -634,6 +631,7 @@ public class newPipeForm extends javax.swing.JFrame {
 				SubmitFailiureLabel.setText("");//Removing residual messages
 				((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
 				addToTotal(-Double.parseDouble(TotalDisplayLabel.getText().replaceAll(".*£", "")));
+				TotalDisplayLabel.setText("0");
 			}
         }//GEN-LAST:event_EmptyBasketButtonActionPerformed
 	}
@@ -646,6 +644,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "Order placed! Thank you for your business.", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
 			((DefaultTableModel) BasketTable.getModel()).setRowCount(0);//Removing the ordered pipes from the basket
+				TotalDisplayLabel.setText("0");
 		}
         }//GEN-LAST:event_CheckoutButtonActionPerformed
 	/**
