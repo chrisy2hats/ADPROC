@@ -360,11 +360,11 @@
                 <Column editable="false" title="Grade of plastic" type="java.lang.String"/>
                 <Column editable="false" title="Length of pipe(m)" type="java.lang.Object"/>
                 <Column editable="false" title="Diameter(inches)" type="java.lang.Object"/>
-                <Column editable="true" title="Number of colours" type="java.lang.Object"/>
+                <Column editable="false" title="Number of colours" type="java.lang.Object"/>
                 <Column editable="false" title="Insultation" type="java.lang.Object"/>
                 <Column editable="false" title="Reinforcement" type="java.lang.Object"/>
                 <Column editable="false" title="Chemical Resistance" type="java.lang.Object"/>
-                <Column editable="true" title="Quantity" type="java.lang.Object"/>
+                <Column editable="false" title="Quantity" type="java.lang.Object"/>
                 <Column editable="false" title="Price" type="java.lang.Object"/>
               </Table>
             </Property>

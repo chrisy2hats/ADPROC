@@ -169,7 +169,7 @@ public class newPipeForm extends javax.swing.JFrame {
                                 java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
                         };
                         boolean[] canEdit = new boolean [] {
-                                false, false, false, true, false, false, false, true, false
+                                false, false, false, false, false, false, false, false, false
                         };
 
                         public Class getColumnClass(int columnIndex) {
@@ -610,12 +610,10 @@ public class newPipeForm extends javax.swing.JFrame {
 
         private void DeletePipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePipeButtonActionPerformed
 		SubmitFailiureLabel.setText("");//Removing residual messages
-		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
 
 		int currentlySelectedRow = BasketTable.getSelectedRow();
-		if ((numberOfRows != 0)) {
 			if (currentlySelectedRow == -1) {
-				JOptionPane.showMessageDialog(null, "No pipe deleted. Have you selected one?", "InfoBox: " + "", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No pipe deleted. Have you selected one?", "InfoBox: " + "Warning", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
@@ -635,7 +633,6 @@ public class newPipeForm extends javax.swing.JFrame {
 
 				}
 			}
-		}
 
         }//GEN-LAST:event_DeletePipeButtonActionPerformed
 
@@ -643,7 +640,7 @@ public class newPipeForm extends javax.swing.JFrame {
 		int numberOfRows = ((DefaultTableModel) BasketTable.getModel()).getRowCount();
 		if (numberOfRows != 0) {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
-			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the pipe?", "Warning", dialogButton);
+			int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to empty the basket?", "Warning", dialogButton);
 			if (dialogResult == JOptionPane.YES_OPTION) {
 				SubmitFailiureLabel.setText("");//Removing residual messages
 				((DefaultTableModel) BasketTable.getModel()).setRowCount(0);
