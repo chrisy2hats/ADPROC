@@ -68,7 +68,7 @@ public abstract class LongPipe {
 		if (this.chemicalResist) {
 			chemicalResistance = "\tResistance to chemical resistance";
 		} else {
-			chemicalResistance = "\tNot resistance to chemicals";
+			chemicalResistance = "\tNot resistant to chemicals";
 		}
 
 		double volume = this.calculateVolume(this.lengthInMeters, this.diameterInInches);
